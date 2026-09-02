@@ -10,12 +10,12 @@
 <body>
   <header class="site">
     <div class="wrap">
-      <h1>🕸️ The Marvel Web</h1>
+      <h1 class="comic-font">🕸️ The Marvel Web</h1>
       <p class="tagline">A running log through Social Graphs &amp; Interactions (02805).</p>
       <nav class="top">
         <a href="../index.html">Posts</a>
         <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener">Course page ↗</a>
-        <a href="https://github.com/albertcasajuana01/the-marvel-web" target="_blank" rel="noopener">Source ↗</a>
+        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">Source ↗</a>
       </nav>
     </div>
   </header>
@@ -25,6 +25,13 @@
       <article>
         <h1>Meet the network: 303 heroes, 17 loners, and one island of Morituri</h1>
         <p class="meta">Week 1 · Bootstrap edition · Albert, Viktor &amp; Mariona</p>
+
+        <p>
+          <span class="pow">POW!</span> Below isn't a screenshot of a graph — it's the actual graph.
+          Drag a node, hover a hero, search your favorite, hit the dice for a random one. The plots
+          further down are live too: flip axes, swap in-degree for out-degree, watch curves straighten.
+          Go break something. <em>(You can't — it's read-only. But try anyway.)</em>
+        </p>
 
         <h2>What we asked</h2>
         <p>
@@ -55,6 +62,41 @@
           other in <em>both</em> directions (e.g. two Avengers who each mention the other), so those 700
           directed edges collapse into 350 shared undirected edges once direction stops mattering; the
           remaining 1,084 edges are one-way and pass straight through. 350 + 1,084 = 1,434.
+        </p>
+
+        <h2>Poke the universe</h2>
+        <p>
+          One figure, the whole network: the giant component, the Morituri island, and the 17 loners,
+          all in the same force-directed layout. Node size and color both track in-degree — the brighter
+          and bigger a node, the more other heroes point to it.
+        </p>
+
+        <div class="net-app">
+          <div class="net-controls">
+            <input type="text" id="hero-search" list="hero-list" placeholder="Search a character… (press Enter)" />
+            <datalist id="hero-list"></datalist>
+            <button class="btn dice" id="dice-btn">Random hero</button>
+            <button class="btn secondary" id="reset-view-btn">Reset view</button>
+          </div>
+          <div class="net-controls">
+            <label class="chip-toggle on"><input type="checkbox" id="toggle-morituri" checked /> Morituri island</label>
+            <label class="chip-toggle"><input type="checkbox" id="toggle-isolates" /> the 17 loners</label>
+            <label class="chip-toggle"><input type="checkbox" id="toggle-arrows" /> show direction (arrows)</label>
+          </div>
+          <div class="net-stage" id="network-stage">
+            <svg id="network-svg"></svg>
+            <div class="net-tooltip" id="network-tooltip"></div>
+          </div>
+          <div class="net-legend">
+            <span id="net-count-label">loading…</span>
+            <span><span class="dot" style="background:#f0e442"></span>high in-degree</span>
+            <span><span class="dot" style="background:#7d0074"></span>low in-degree</span>
+          </div>
+          <div class="hero-panel" id="hero-panel" hidden></div>
+        </div>
+        <p class="chart-note">
+          Drag to rearrange, scroll/pinch to zoom, click a node (or a chip in its panel) to jump to a
+          neighbor. Click empty space to deselect.
         </p>
 
         <h2>Who's linked to, and who links out</h2>
@@ -98,31 +140,18 @@
           it's already the most famous article. Characters like Betsy Braddock, on the other hand, have had
           decades of tangled team-roster history (X-Men, Excalibur, X-Force...), so their pages spend a lot
           of words cross-referencing teammates — high out-degree, but nowhere near as famous as an inbound
-          link target.
+          link target. <span class="pow" style="background:var(--isolate); color:#04211d;">TRY IT</span>
+          search "Spider-Man" above and watch how much of the web lights up around him.
         </p>
-
-        <h2>The network, drawn</h2>
-        <figure>
-          <img src="../assets/giant-component.png" alt="Force-directed layout of the Marvel network's giant component, 277 nodes, colored and sized by in-degree, with Spider-Man as a single bright yellow hub" />
-          <figcaption>
-            The giant component (277 of 303 characters), laid out with a force-directed algorithm.
-            Node size and color both track in-degree — the one glowing yellow node near the middle-left is
-            Spider-Man, unmistakably.
-          </figcaption>
-        </figure>
 
         <h2>What surprised us: an island of Morituri</h2>
         <p>
           We expected the isolates (17 characters nobody links to and who link to nobody) — the course page
           warned us they were worth a look. What we didn't expect was a <em>second</em>, self-contained
           cluster: a 9-node clique of characters from Marvel's "Strikeforce: Morituri" series, all densely
-          linked to each other and to nobody else in the whole 303-character set.
+          linked to each other and to nobody else in the whole 303-character set. Toggle it off above and
+          watch it detach cleanly from the rest of the universe — it really is its own little galaxy.
         </p>
-
-        <figure>
-          <img src="../assets/morituri-island.png" alt="A small disconnected 9-node graph of Strikeforce Morituri characters" />
-          <figcaption>The Morituri island: 9 characters who only ever cite each other.</figcaption>
-        </figure>
 
         <div class="callout">
           Counting connected components in the undirected graph: <strong>19 total</strong> — one giant
@@ -130,6 +159,55 @@
           singletons. A tidy demonstration that "Category:Marvel Comics superheroes" is really a union of
           Wikipedia's editorial choices, not one coherent fictional universe.
         </div>
+
+        <h2>The distributions, live</h2>
+        <p>
+          Same data, reshaped: how many characters have exactly <em>k</em> incoming or outgoing links, on
+          linear vs. log axes, with the course's log-binning scheme overlaid — and, for fun, how the real
+          in-degree distribution stacks up against synthetic exponential and power-law samples.
+        </p>
+
+        <div class="chart-app">
+          <div class="chart-tabs">
+            <button id="tab-degree" class="active">📈 Degree distribution</button>
+            <button id="tab-twodist">🎲 Exponential vs. power law</button>
+          </div>
+
+          <div id="panel-degree">
+            <div class="net-controls">
+              <span class="chip-toggle on" id="deg-metric-in">● in-degree</span>
+              <span class="chip-toggle" id="deg-metric-out">● out-degree</span>
+              <span class="chip-toggle on" id="deg-scale-toggle">● log–log axes</span>
+            </div>
+            <div id="degree-plot" class="chart-plot"></div>
+            <p class="chart-note">
+              Plotted against k+1 so isolates (k=0) stay visible on the log axis. The gold line is the
+              Goodies' log-binning scheme — width-1 bins up to k+1=7, doubling after — and it sits exactly
+              on top of the raw dots wherever a bin is still width 1. Hover a raw dot for example characters
+              at that degree.
+            </p>
+          </div>
+
+          <div id="panel-twodist" hidden>
+            <div class="net-controls">
+              <span class="chip-toggle" id="dist-x-toggle">x axis: linear</span>
+              <span class="chip-toggle" id="dist-y-toggle">y axis: linear</span>
+            </div>
+            <div id="twodist-plot" class="chart-plot"></div>
+            <p class="chart-note">
+              10,000 samples each from an exponential and a power-law distribution, plus the real Marvel
+              in-degree distribution overlaid. Toggle both axes to log to see which curve goes straight —
+              then judge for yourself which one the real data resembles.
+            </p>
+          </div>
+        </div>
+
+        <p>
+          Our read: the exponential straightens out on a linear-x/log-y plot, the power law straightens on
+          log–log, and the real in-degree data sits closer to the power law's line in the tail — though with
+          only 303 nodes against 10,000 synthetic samples each, we're not staking much confidence on that yet.
+          <span class="pow">TBD</span> we'll actually fit exponents and test this properly in week 2.
+        </p>
 
         <h2>What's next</h2>
         <p>
@@ -147,5 +225,10 @@
       Built for 02805 Social Graphs &amp; Interactions, DTU. Data: Wikipedia <code>Category:Marvel Comics superheroes</code>, frozen week-1 snapshot.
     </div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script src="../assets/network.js"></script>
+  <script src="../assets/charts.js"></script>
 </body>
 </html>
