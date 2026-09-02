@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 1 — Meet the network | The Marvel Web</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕸️</text></svg>" />
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <h1>🕸️ The Marvel Web</h1>
+      <p class="tagline">A running log through Social Graphs &amp; Interactions (02805).</p>
+      <nav class="top">
+        <a href="../index.html">Posts</a>
+        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener">Course page ↗</a>
+        <a href="https://github.com/albertcasajuana01/the-marvel-web" target="_blank" rel="noopener">Source ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <article>
+        <h1>Meet the network: 303 heroes, 17 loners, and one island of Morituri</h1>
+        <p class="meta">Week 1 · Bootstrap edition · Albert, Viktor &amp; Mariona</p>
+
+        <h2>What we asked</h2>
+        <p>
+          Week 1 hands every group the same frozen snapshot: 303 Marvel characters from Wikipedia's
+          <code>Category:Marvel Comics superheroes</code>, with a directed edge A → B whenever A's article
+          links to B's. Before doing anything fancy with it, we wanted three plain questions answered:
+          how connected is this thing really, who's the most <em>talked about</em> versus who <em>talks about others</em>
+          the most, and is it really one single blob — or does it secretly fall apart into pieces?
+        </p>
+
+        <h2>What we did</h2>
+        <p>
+          We loaded the edge list and node roster with every node added first, so the isolated characters
+          (people whose articles link to nobody, and whom nobody links to) survive instead of quietly
+          vanishing from the graph. That gave us:
+        </p>
+
+        <div class="stat-grid">
+          <div class="stat-card"><div class="num">303</div><div class="label">characters (nodes)</div></div>
+          <div class="stat-card"><div class="num">1,784</div><div class="label">directed edges</div></div>
+          <div class="stat-card"><div class="num">1,434</div><div class="label">undirected edges</div></div>
+          <div class="stat-card"><div class="num">≈9.47</div><div class="label">average degree ⟨k⟩</div></div>
+          <div class="stat-card"><div class="num">17</div><div class="label">true isolates</div></div>
+        </div>
+
+        <p>
+          The gap between 1,784 and 1,434 isn't a bug — it's reciprocity. 350 character pairs link to each
+          other in <em>both</em> directions (e.g. two Avengers who each mention the other), so those 700
+          directed edges collapse into 350 shared undirected edges once direction stops mattering; the
+          remaining 1,084 edges are one-way and pass straight through. 350 + 1,084 = 1,434.
+        </p>
+
+        <h2>Who's linked to, and who links out</h2>
+        <p>
+          In-degree and out-degree tell very different stories about the same page. In-degree is a proxy
+          for <em>fame</em> — how often other characters' articles bother to mention you. Out-degree is a
+          proxy for <em>how thorough the article is</em> — how many other characters get name-dropped in
+          your own page's "allies," "teams," and "enemies" sections.
+        </p>
+
+        <div class="two-col">
+          <div>
+            <table class="stats">
+              <thead><tr><th colspan="2">Top 5 by in-degree</th></tr></thead>
+              <tbody>
+                <tr><td>Spider-Man</td><td>106</td></tr>
+                <tr><td>Hulk</td><td>64</td></tr>
+                <tr><td>Wolverine</td><td>60</td></tr>
+                <tr><td>Doctor Strange</td><td>50</td></tr>
+                <tr><td>Deadpool</td><td>33</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <table class="stats">
+              <thead><tr><th colspan="2">Top 5 by out-degree</th></tr></thead>
+              <tbody>
+                <tr><td>Betsy Braddock</td><td>28</td></tr>
+                <tr><td>Cloak and Dagger</td><td>24</td></tr>
+                <tr><td>Adam Warlock</td><td>22</td></tr>
+                <tr><td>Venom</td><td>21</td></tr>
+                <tr><td>She-Hulk</td><td>20</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p>
+          Almost no overlap between the two lists. Spider-Man is linked to by roughly a third of the entire
+          giant component, but his own page doesn't need to name-drop many other heroes to make its point —
+          it's already the most famous article. Characters like Betsy Braddock, on the other hand, have had
+          decades of tangled team-roster history (X-Men, Excalibur, X-Force...), so their pages spend a lot
+          of words cross-referencing teammates — high out-degree, but nowhere near as famous as an inbound
+          link target.
+        </p>
+
+        <h2>The network, drawn</h2>
+        <figure>
+          <img src="../assets/giant-component.png" alt="Force-directed layout of the Marvel network's giant component, 277 nodes, colored and sized by in-degree, with Spider-Man as a single bright yellow hub" />
+          <figcaption>
+            The giant component (277 of 303 characters), laid out with a force-directed algorithm.
+            Node size and color both track in-degree — the one glowing yellow node near the middle-left is
+            Spider-Man, unmistakably.
+          </figcaption>
+        </figure>
+
+        <h2>What surprised us: an island of Morituri</h2>
+        <p>
+          We expected the isolates (17 characters nobody links to and who link to nobody) — the course page
+          warned us they were worth a look. What we didn't expect was a <em>second</em>, self-contained
+          cluster: a 9-node clique of characters from Marvel's "Strikeforce: Morituri" series, all densely
+          linked to each other and to nobody else in the whole 303-character set.
+        </p>
+
+        <figure>
+          <img src="../assets/morituri-island.png" alt="A small disconnected 9-node graph of Strikeforce Morituri characters" />
+          <figcaption>The Morituri island: 9 characters who only ever cite each other.</figcaption>
+        </figure>
+
+        <div class="callout">
+          Counting connected components in the undirected graph: <strong>19 total</strong> — one giant
+          component with 277 nodes (91.4% of the network), the 9-node Morituri island, and 17 true
+          singletons. A tidy demonstration that "Category:Marvel Comics superheroes" is really a union of
+          Wikipedia's editorial choices, not one coherent fictional universe.
+        </div>
+
+        <h2>What's next</h2>
+        <p>
+          Next week we start pulling the real text behind these pages apart. For now: check the
+          <a href="https://sunelehmann.com/socialgraphs2026-web/weeks/week1.html" target="_blank" rel="noopener">real-degrees
+          and two-distributions explorables</a> against our numbers above — they should match, since we're
+          all working from the same frozen snapshot.
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Built for 02805 Social Graphs &amp; Interactions, DTU. Data: Wikipedia <code>Category:Marvel Comics superheroes</code>, frozen week-1 snapshot.
+    </div>
+  </footer>
+</body>
+</html>
