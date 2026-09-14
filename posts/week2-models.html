@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 2 — Degree distribution vs. random models | The Marvel Web</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕸️</text></svg>" />
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <h1 class="comic-font">🕸️ The Marvel Web</h1>
+      <p class="tagline">A running log through Social Graphs &amp; Interactions (02805).</p>
+      <nav class="top">
+        <a href="../index.html">Posts</a>
+        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener">Course page ↗</a>
+        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">Source ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <article>
+        <h1>Degree distribution vs. random models</h1>
+        <p class="meta">Week 2 · Real degree distribution &amp; benchmark graphs · Albert, Viktor &amp; Mariona</p>
+
+        <p>
+          The real week-1 network is a 303-node Marvel superhero graph with <strong>1,434 undirected edges</strong>,
+          a maximum degree of <strong>106</strong> (Spider-Man), <strong>17 isolates</strong>, and a giant component
+          covering <strong>91.4%</strong> of all nodes. Against that benchmark, we compared the empirical CCDF with
+          two null models: a matched <em>G(n,m)</em> random graph and a Barabási–Albert model tuned to
+          <em>m</em> = 5 new edges per node (the closest integer match to the real edge count),
+          each pooled over 200 realizations.
+        </p>
+
+        <div class="stat-grid">
+          <div class="stat-card"><div class="num">303</div><div class="label">nodes</div></div>
+          <div class="stat-card"><div class="num">1,434</div><div class="label">edges</div></div>
+          <div class="stat-card"><div class="num">106</div><div class="label">max degree</div></div>
+          <div class="stat-card"><div class="num">17</div><div class="label">isolates</div></div>
+          <div class="stat-card"><div class="num">91.4%</div><div class="label">giant component</div></div>
+        </div>
+
+        <h2>What the CCDF shows</h2>
+        <p>
+          On a log–log CCDF, the real degree distribution sits much closer to the tuned BA model than to the
+          random-graph baseline. The BA curve reproduces the long tail and the hub scale much more naturally,
+          which is exactly what one would expect from a preferential-attachment process. The main structural
+          miss is also informative: BA can never produce isolated nodes, while the Marvel graph has 17 true
+          singletons. That is a real, nontrivial gap between the synthetic model and the empirical network.
+        </p>
+
+        <div class="chart-app">
+          <div class="net-controls">
+            <span class="chip-toggle on" id="ccdf-scale-toggle">● log–log axes</span>
+            <span class="chip-toggle on" id="ccdf-fit-toggle">● show fitted power law</span>
+          </div>
+          <div id="ccdf-plot" class="chart-plot" style="height:420px;"></div>
+          <p class="chart-note">
+            CCDFs for the real network, a matched random graph, and a tuned BA model. The fitted power-law line is
+            optional and helps compare the tail shape against a strict scale-free hypothesis.
+          </p>
+        </div>
+
+        <h2>What we conclude</h2>
+        <p>
+          The shape is clearly much closer to BA than to random. However, a formal power-law comparison still
+          rejects a pure power-law description in favor of a log-normal alternative. So the most defensible
+          summary is: the network is heavy-tailed and BA-shaped, but it does not satisfy a strict power-law fit.
+          That is a stronger, more honest conclusion than claiming a confirmed exponent where the statistical
+          test does not support it.
+        </p>
+
+        <div class="callout">
+          Fitting the real degree sequence with the <code>powerlaw</code> package gives
+          <strong>α ≈ 2.10</strong> (x<sub>min</sub> = 5). The rigorous test is
+          <strong>powerlaw.distribution_compare</strong>: it prefers the log-normal model over a pure power law
+          with <strong>R = −17.86, p = 0.0005</strong>. Power law vs. exponential is a closer call
+          (R = −15.07, p = 0.07) — not significant, so we can't rule out exponential either. This is the correct
+          statistical story, even though the network still looks much more BA-like than random in a visual sense.
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Built for 02805 Social Graphs &amp; Interactions, DTU. Data: Wikipedia <code>Category:Marvel Comics superheroes</code>, frozen week-1 snapshot.
+    </div>
+  </footer>
+
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script src="../assets/charts_week2.js"></script>
+</body>
+</html>

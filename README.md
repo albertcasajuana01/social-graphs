@@ -31,6 +31,7 @@ analysis/                    — the notebook(s) and data behind each post
   distribution_as_code.ipynb
   make_figures.py              — regenerates the static fallback figures
   export_data.py               — regenerates network.json / degree_data.json
+  week2_models.py              — regenerates week2_models.json (CCDF vs. null models)
   data/                         — frozen weekly snapshots from the course data page
 ```
 
@@ -41,6 +42,13 @@ cd analysis
 jupyter nbconvert --to notebook --execute --inplace distribution_as_code.ipynb
 python export_data.py     # writes ../assets/network.json and ../assets/degree_data.json
 python make_figures.py    # optional: static PNG fallbacks
+```
+
+## Reproducing week 2
+
+```bash
+cd analysis
+python week2_models.py    # writes ../assets/week2_models.json (needs networkx, numpy, pandas, powerlaw)
 ```
 
 ## Publishing
