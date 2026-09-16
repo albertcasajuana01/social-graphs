@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 3 — Attack vs. random failure | The Marvel Web</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕸️</text></svg>" />
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <h1 class="comic-font">🕸️ The Marvel Web</h1>
+      <p class="tagline">A running log through Social Graphs &amp; Interactions (02805).</p>
+      <nav class="top">
+        <a href="../index.html">Posts</a>
+        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener">Course page ↗</a>
+        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">Source ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <article>
+        <h1>Attack vs. random failure: how many heroes does it take to break the Marvel web?</h1>
+        <p class="meta">Week 3 · Paths, centrality &amp; robustness · Albert, Viktor &amp; Mariona</p>
+
+        <p>
+          <span class="pow">POW!</span> Week 2 showed our 303-character network sits closer to a
+          Barabási–Albert graph than to a random one. BA graphs have a famous party trick: they're
+          <em>robust to random failure but fragile to targeted attack</em>, because a few hubs carry a wildly
+          disproportionate share of the paths. So this week we tested that directly on our own giant
+          component — remove characters one at a time, in different orders, and watch how fast the network
+          falls apart.
+        </p>
+
+        <h2>What we asked</h2>
+        <p>
+          Is the character whose removal fragments the network the most the same one who tops the
+          betweenness-centrality ranking? And more broadly: if you had to design an "attack" that breaks the
+          Marvel universe into pieces as fast as possible, is ranking by betweenness actually better than the
+          simpler, cheaper strategy of ranking by degree — and how much worse is it to remove characters at
+          random?
+        </p>
+
+        <h2>What we did</h2>
+        <p>
+          We took the undirected giant component from week 1 (277 of the 303 characters — the Morituri
+          island and the 17 loners were dropped, since "fragmenting" an already-disconnected piece isn't
+          meaningful) and computed betweenness centrality and degree for every node. Then we removed nodes
+          one by one, in three different orders, and after each removal measured what fraction of the
+          <em>original</em> 277 nodes was still reachable in the largest surviving piece:
+        </p>
+
+        <ul>
+          <li><strong>Targeted attack, by betweenness</strong> — highest betweenness first, fixed order.</li>
+          <li><strong>Targeted attack, by degree</strong> — highest degree first, fixed order.</li>
+          <li><strong>Random failure</strong> — uniform random order, averaged over 200 independent trials.</li>
+        </ul>
+
+        <div class="stat-grid">
+          <div class="stat-card"><div class="num">277</div><div class="label">nodes in the giant component</div></div>
+          <div class="stat-card"><div class="num">81</div><div class="label">targeted removals to cut it in half</div></div>
+          <div class="stat-card"><div class="num">128</div><div class="label">random removals to cut it in half</div></div>
+          <div class="stat-card"><div class="num">2.17%</div><div class="label">biggest single-node impact (Spider-Man)</div></div>
+        </div>
+
+        <h2>The collapse, live</h2>
+        <p>
+          Same story as the CCDF plot last week, but now it's the giant component itself falling apart.
+          Watch how much further ahead the two targeted curves are than random failure — and how close
+          betweenness and degree attack track each other for most of the way.
+        </p>
+
+        <div class="chart-app">
+          <div class="net-controls">
+            <span class="chip-toggle" id="robustness-scale-toggle">○ linear x-axis</span>
+          </div>
+          <div id="robustness-plot" class="chart-plot" style="height:420px;"></div>
+          <p class="chart-note">
+            x-axis: number of characters removed from the 277-node giant component. y-axis: fraction of the
+            original 277 still connected in the largest surviving piece. Random failure is the mean over
+            200 random removal orders.
+          </p>
+        </div>
+
+        <p>
+          The gap is enormous. Remove the top 100 highest-betweenness characters (36% of the giant
+          component) and only <strong>21%</strong> of it survives as one piece; removing the top 100 by
+          degree instead leaves <strong>28%</strong> intact. Remove the <em>same number</em> of characters at
+          random and <strong>61%</strong> is still standing. To do half as much damage as 81 targeted
+          removals, random failure needs 128 removals — 58% more effort for the same result. This is exactly
+          the BA-network signature Albert, Jeong &amp; Barabási described: a few hub characters carry a
+          hugely disproportionate share of the network's paths, so knowing <em>who</em> to remove matters far
+          more than <em>how many</em> you remove.
+        </p>
+
+        <div class="callout">
+          Betweenness-ranked attack and degree-ranked attack track each other closely for the first ~70
+          removals, then betweenness pulls ahead as the more efficient wrecking strategy — a reminder that
+          degree and betweenness usually agree on <em>who the hubs are</em>, but betweenness is the sharper
+          tool once you're deliberately trying to sever the paths between everyone else.
+        </div>
+
+        <h2>Is the top fragmenter the same as the top betweenness node?</h2>
+        <p>
+          For the single most damaging character to remove, yes: <strong>Spider-Man</strong> tops both
+          rankings, and removing him alone only shrinks the giant component by 2.17%. That number is the
+          real headline here — even Spider-Man is not a single point of failure. With 277 nodes and plenty of
+          redundant paths between them, no <em>one</em> character can break the network; fragmentation only
+          shows up once you strip away dozens of hubs in sequence, which is exactly what the curves above
+          demonstrate.
+        </p>
+        <p>
+          But past the very top, the two rankings diverge in an interesting way. We compared each
+          character's <em>solo</em> fragmentation impact (removed alone) against their betweenness and degree
+          ranks:
+        </p>
+
+        <div class="two-col">
+          <div>
+            <table class="stats">
+              <thead><tr><th colspan="4">Top 10 by solo fragmentation impact</th></tr></thead>
+              <tbody id="fragmenters-table">
+                <tr><td colspan="4">loading…</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <table class="stats">
+              <thead><tr><th colspan="3">Top 10 by betweenness</th></tr></thead>
+              <tbody id="betweenness-table">
+                <tr><td colspan="3">loading…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p>
+          Several characters near the bottom of that first table — Genis-Vell, Guardsman, Nightmask, Rockman
+          — rank in the top 10 for fragmentation impact despite sitting far down the betweenness list (ranks
+          47–59) and even further down the degree list (ranks 115–249). These are classic <strong>local cut
+          vertices</strong>: low-traffic characters whose single edge is the only thread connecting a small
+          pendant cluster of teammates to the rest of the universe. Global betweenness barely notices them
+          because almost no shortest paths route through their corner of the graph — but from the
+          perspective of "how much of the network becomes unreachable if this one page disappears," they
+          punch well above their centrality rank. Black Widow shows a milder version of the same effect:
+          rank 8 by betweenness, but rank 2 by fragmentation impact.
+        </p>
+
+        <h2>What's next</h2>
+        <p>
+          The robustness curves confirm the BA-shaped story from week 2 in a much more concrete way than a
+          degree-distribution plot: this network really does behave like a hub-and-spoke structure under
+          stress, not a uniformly-connected one. Next week we start looking at what the hubs and the
+          cut-vertex characters actually have in common — teams, eras, anything scrapeable from their pages.
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Built for 02805 Social Graphs &amp; Interactions, DTU. Data: Wikipedia <code>Category:Marvel Comics superheroes</code>, frozen week-1 snapshot.
+    </div>
+  </footer>
+
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script src="../assets/charts_week3.js"></script>
+  <script src="../assets/tables_week3.js"></script>
+</body>
+</html>

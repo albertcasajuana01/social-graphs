@@ -32,6 +32,7 @@ analysis/                    — the notebook(s) and data behind each post
   make_figures.py              — regenerates the static fallback figures
   export_data.py               — regenerates network.json / degree_data.json
   week2_models.py              — regenerates week2_models.json (CCDF vs. null models)
+  week3_robustness.py          — regenerates week3_robustness.json (attack vs. random failure)
   data/                         — frozen weekly snapshots from the course data page
 ```
 
@@ -49,6 +50,13 @@ python make_figures.py    # optional: static PNG fallbacks
 ```bash
 cd analysis
 python week2_models.py    # writes ../assets/week2_models.json (needs networkx, numpy, pandas, powerlaw)
+```
+
+## Reproducing week 3
+
+```bash
+cd analysis
+python week3_robustness.py   # writes ../assets/week3_robustness.json (needs networkx, numpy, pandas)
 ```
 
 ## Publishing
