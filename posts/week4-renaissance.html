@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 4 — Where did the Renaissance go? | The Marvel Web</title>
+  <meta name="description" content="200 Louvain runs on the philosopher network: every tradition keeps its members, except the Renaissance naturalists, a tight bloc that no community owns." />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕸️</text></svg>" />
+  <style>
+    .tug-legend, .trad-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.8rem; color: var(--text-dim); margin: 6px 0 4px; }
+    .trad-legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+    .alpha-row { display: flex; align-items: center; gap: 10px; flex: 1 1 260px; font-size: 0.85rem; color: var(--text-dim); }
+    .alpha-row input[type="range"] { flex: 1; accent-color: var(--accent-2); }
+    .alpha-row output { color: var(--text); font-weight: 700; min-width: 3.2em; font-variant-numeric: tabular-nums; }
+    .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; overflow: hidden; }
+    .seg button { background: var(--bg); color: var(--text-dim); border: none; padding: 6px 12px; font-size: 0.82rem; cursor: pointer; }
+    .seg button.active { background: rgba(108,99,255,0.18); color: var(--text); }
+    table.stats td.num, table.stats th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    table.stats tr.hot td { color: var(--pow); }
+    .stat-card .num { font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <h1 class="comic-font">🕸️ The Marvel Web</h1>
+      <p class="tagline">A running log through Social Graphs &amp; Interactions (02805).</p>
+      <nav class="top">
+        <a href="../index.html">Posts</a>
+        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener">Course page ↗</a>
+        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">Source ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <article>
+        <h1>Where did the Renaissance go? 200 Louvain runs and the philosophers no tradition will keep</h1>
+        <p class="meta">Week 4 · Communities, consensus, weights &amp; backbones · Albert, Viktor &amp; Mariona</p>
+
+        <p>
+          <span class="pow">BAM!</span> This week we swap the Marvel heroes for the course's philosopher
+          network: 1,374 philosophers born before 1900 and 9,139 links between their Wikipedia pages.
+          Run Louvain on it and you get a clean history of philosophy: antiquity, Christian thought,
+          the Enlightenment, German philosophy, India, China. The catch, as the lecture notes stress, is
+          that every run gives a <em>slightly different</em> version of that history. Most write-ups treat
+          that as noise to average out. We treated it as data and asked:
+          <strong>which philosophers keep changing tradition from run to run, and why?</strong>
+        </p>
+        <p>
+          It turns out they are not a random sprinkle of badly connected nodes. They are mostly one
+          group: Galileo, Kepler, Bruno, Campanella, Telesio, Pomponazzi and the rest of the late
+          Renaissance naturalists. They stick together, but no community wants to keep them.
+        </p>
+
+        <h2>What we did</h2>
+        <ul>
+          <li><strong>200 Louvain runs</strong> (networkx, seeds 0–199) on the undirected giant component,
+            once ignoring weights and once with them (weight = how often the two pages link to each other,
+            summed over both directions).</li>
+          <li><strong>A consensus partition</strong> (Lancichinetti &amp; Fortunato's consensus clustering):
+            count how often each pair of philosophers shares a community across the 200 runs, keep the
+            pairs that do so in at least half of them, rerun Louvain on that "agreement graph" until the
+            runs stop disagreeing. The eight big communities it returns are the eight traditions below.
+            Each is named after its best-connected member, plus a label we chose; the labels are our
+            reading of the data, not the algorithm's.</li>
+          <li><strong>Loyalty</strong> of a philosopher = the share of the 200 runs in which they land
+            in (the run's version of) their own consensus tradition. 1.0 means every run agrees on
+            where they belong.</li>
+        </ul>
+
+        <div class="stat-grid">
+          <div class="stat-card"><div class="num" data-k="nmi_u">—</div><div class="label">NMI between two runs (min – max of 500 pairs)</div></div>
+          <div class="stat-card"><div class="num" data-k="Q">—</div><div class="label">Q of the consensus vs. degree-preserving shuffles</div></div>
+          <div class="stat-card"><div class="num" data-k="ren">—</div><div class="label">mean loyalty, 15th–16th c. vs. everyone</div></div>
+          <div class="stat-card"><div class="num" data-k="bloc">—</div><div class="label">of run pairs keep the Renaissance bloc together</div></div>
+        </div>
+
+        <p>
+          First, a sanity check: the structure is real. The consensus has Q = <span data-k="Qc">0.51</span>;
+          the same network rewired 20 times with degrees preserved scores
+          <span data-k="Qnull">0.22</span>, so the real value sits more than 100 standard deviations above
+          the null. Stability is only middling, though. Two runs agree at an NMI anywhere from
+          <span data-k="nmi_lo">0.59</span> to <span data-k="nmi_hi">0.82</span>, and the number of
+          communities varies from 7 to 11. So the question is where that disagreement comes from.
+        </p>
+
+        <h2>1 · Each century has its traditions, except one</h2>
+        <p>
+          Here every philosopher is placed in their consensus tradition and grouped by the century list
+          Wikipedia puts them on. Most eras have a clear leading tradition: BC is two-thirds Greek &amp; Roman
+          (Indian and Chinese thinkers are the rest), the 17th century is 81% early modern, the 18th
+          belongs to the Enlightenment. Switch to <em>share</em> and look at the 15th–16th century column.
+        </p>
+
+        <div class="chart-app">
+          <div class="net-controls">
+            <div class="seg" role="group" aria-label="Scale">
+              <button id="era-share" class="active">share of the era</button>
+              <button id="era-count">number of philosophers</button>
+            </div>
+          </div>
+          <div class="trad-legend" id="era-legend"></div>
+          <div id="era-plot" class="chart-plot" style="height:430px;"></div>
+          <p class="chart-note">
+            Each bar is one of Wikipedia's "List of philosophers born in …" pages (the <code>era</code>
+            column), split by unweighted consensus tradition. "Other" is 9 philosophers in three tiny
+            consensus groups (a Polish circle, a French pair and one singleton). Hover for counts.
+          </p>
+        </div>
+
+        <p>
+          The Renaissance has the weakest owner of any era: its largest tradition holds just
+          <strong>28%</strong>, spread over antiquity (28), the early modern tradition (29) and Christian
+          thought (25), with the Islamic tradition next (10). It also has the highest mixing entropy of any
+          era, 2.38 bits against 1.03 for the 17th century. You might expect that from a transitional
+          period. The less obvious part is that this mixing shows up again as instability between runs.
+        </p>
+
+        <h2>2 · The least loyal philosophers belong to one era</h2>
+
+        <div class="chart-app">
+          <div id="loyalty-plot" class="chart-plot" style="height:440px;"></div>
+          <p class="chart-note">
+            One dot per philosopher (hover for names); boxes show the quartiles. Loyalty = share of 200
+            unweighted Louvain runs in which the philosopher ends up in their own consensus tradition.
+          </p>
+        </div>
+
+        <table class="stats" id="era-table">
+          <thead><tr><th>Era</th><th class="num">philosophers</th><th class="num">mean loyalty</th><th class="num">loyalty &lt; 0.5</th><th class="num">largest tradition</th><th class="num">entropy (bits)</th></tr></thead>
+          <tbody><tr><td colspan="6">loading…</td></tr></tbody>
+        </table>
+
+        <p>
+          The 104 philosophers born in the 15th and 16th centuries have a mean loyalty of
+          <strong>0.74</strong>, against 0.85 for the whole network. None of 10,000 random groups of 104
+          philosophers did that badly (permutation p &lt; 10<sup>−4</sup>). One in six of them is in their
+          own tradition in fewer than half the runs. You might suspect this is just small, badly connected
+          nodes being pushed around. It isn't: loyalty is uncorrelated with degree (Spearman ρ = 0.03).
+          Galileo has 52 links and a loyalty of 0.11.
+        </p>
+
+        <h2>3 · A bloc with no home</h2>
+        <p>
+          Here are the least loyal well-linked philosophers (degree ≥ 8), with the share of runs each one
+          spends in each tradition:
+        </p>
+
+        <div class="chart-app">
+          <div class="trad-legend" id="tug-legend"></div>
+          <div id="tug-plot" class="chart-plot" style="height:560px;"></div>
+          <p class="chart-note">
+            Share of the 200 unweighted Louvain runs in which each philosopher lands in each tradition
+            (every run's communities are matched to the consensus tradition they overlap most). Aristotle
+            and Spinoza are included at the bottom for comparison.
+          </p>
+        </div>
+
+        <p>
+          Nine of the top ten were born in the 15th–16th centuries: natural philosophers, Aristotle's
+          critics and a couple of his last great defenders. (The tenth, Alexandre Koyré, is the
+          20th-century historian who wrote the classic <em>Galileo Studies</em>, so he gets pulled around
+          with the people he wrote about.) And they
+          <strong>move together</strong>: a pair of them shares a community in
+          <span data-k="bloc_pct">82%</span> of runs on average (Telesio and Campanella in 99%). What
+          changes is which bigger tradition absorbs the whole bloc:
+        </p>
+
+        <div class="chart-app">
+          <div id="host-plot" class="chart-plot" style="height:330px; min-height:330px;"></div>
+          <p class="chart-note">
+            For each of the 200 runs: which of the four anchor philosophers end up in Galileo's community.
+            "Aristotle + Thomas Aquinas + Avicenna" means that run merged all three traditions and put
+            Galileo in with them.
+          </p>
+        </div>
+
+        <p>
+          Descartes' early modern tradition takes the bloc in 39% of runs. In most of the rest it goes to
+          some mix of antiquity, Christian thought and the Islamic tradition, and sometimes those three
+          are merged into one community just to hold it. In only 9 of the 200 runs does Galileo's community contain
+          <em>none</em> of the four anchors.
+        </p>
+
+        <div class="callout">
+          <strong>Why, in network terms.</strong> Louvain moves a group wherever it raises Q the most.
+          Galileo's 52 links point backwards to what he overturned (Aristotle, Pythagoras, Euclid,
+          Simplicius, Philoponus), sideways to the medieval natural philosophers (Grosseteste, Oresme,
+          Bradwardine, Ibn al-Haytham), and forwards to those who continued his work (Descartes, Newton,
+          Hobbes, Pascal, Huygens). Pomponazzi links to Aristotle, Alexander of Aphrodisias, Averroes and
+          Aquinas, the whole debate over whether Aristotle allows an immortal soul, and then to Machiavelli,
+          Bodin and Bayle. When a tight bloc's outside links are split about evenly between three or four
+          big groups, joining any one of them raises Q by almost the same amount. So the landscape is flat
+          and the random visiting order decides. The NMI of 0.59–0.82 between runs is mostly this bloc,
+          plus a few other bridges, being moved around.
+        </div>
+
+        <p>
+          <strong>Does it match the history?</strong> We read the pages of five of them. Galileo (tried by
+          the Inquisition for Copernicanism, attacked Aristotelian physics), Bruno (Dominican friar, infinite
+          universe, burned in 1600), Campanella (Dominican, follower of Telesio, wrote a defence of Galileo),
+          Telesio (founded a nature-based, anti-Aristotelian philosophy) and Cremonini (a Paduan Aristotelian,
+          Galileo's colleague, famously said not to have looked through the telescope). Each one is defined by
+          their relationship to Aristotle, to the Church and to the new science all at once. So the
+          algorithm's indecision matches real history: these people sat between the three traditions.
+          History of philosophy courses have the same trouble. "Renaissance philosophy" is usually a short
+          chapter between the scholastics and Descartes, and it is not much of a school in our network either.
+        </p>
+        <p>
+          The hubs are not where the uncertainty is. Plato, Aquinas, Locke, Hume and Cicero have loyalty 1.0.
+          Aristotle is the exception with 0.62: in 28% of runs he goes with Christian thought, which fits a
+          man Aquinas simply called "the Philosopher". Spinoza (0.61) splits between the early modern
+          tradition and the German idealists who rediscovered him.
+        </p>
+
+        <h2>4 · With weights, the Renaissance becomes a science story</h2>
+        <p>
+          Now let the weights count. The weighted consensus agrees with the unweighted one at NMI
+          <span data-k="nmi_uw">0.74</span>, and <span data-k="moved">189</span> philosophers change
+          tradition. Most of them are 19th-century (Darwin, Spencer and Huxley move from the early modern
+          tradition to Russell's group, for example), but the move that changes the story is the Renaissance
+          bloc, which goes as a whole into <strong>Avicenna's group</strong>: Galileo, Copernicus, Kepler, Bruno, Pomponazzi,
+          Ficino, Cardano, Gassendi, Mersenne, plus Ptolemy and Ibn al-Haytham. The Islamic &amp; Jewish
+          tradition grows from 90 to 122 and becomes a community that runs from Ptolemy through the Arabic
+          astronomers and commentators to Copernicus and Galileo. That is a fair summary of how Greek
+          science reached early modern Europe. The course notes found the same Avicenna–Galileo community
+          in a single run and warned that "you would be constructing" its story. Our reading: the repeated
+          links (the weights) are what hold that community together, and without weights it breaks up
+          across three traditions.
+        </p>
+        <p>
+          Weights also make runs more consistent (NMI <span data-k="nmi_w">0.65–0.88</span> versus
+          0.59–0.82). The strong ties settle most of what the unweighted runs keep changing.
+        </p>
+
+        <h2>5 · See it: the backbone</h2>
+        <p>
+          9,139 links is too many to draw, so we used the disparity filter (implemented from the formula, no
+          library): a link survives when it carries an unusually large share of the strength of <em>either</em>
+          endpoint, with significance below α. At α = 0.2 our filter keeps 1,538 links and an
+          816-philosopher giant component, the same giant component as the course explorable and within
+          two links of its count. Only the drawing uses the backbone; the colours come from the full network
+          (as the lecture recommends). Drag α down to see the traditions separate, switch to
+          <em>loyalty</em> to find the unstable philosophers, or to <em>weighted</em> to watch the
+          Renaissance join the Islamic group.
+        </p>
+
+        <div class="net-app">
+          <div class="net-controls">
+            <div class="alpha-row">
+              <label for="alpha">α</label>
+              <input type="range" id="alpha" min="0.05" max="0.3" step="0.01" value="0.2" />
+              <output id="alpha-out">0.20</output>
+            </div>
+            <div class="seg" role="group" aria-label="Colour by">
+              <button data-mode="u" class="active">unweighted</button>
+              <button data-mode="w">weighted</button>
+              <button data-mode="loy">loyalty</button>
+            </div>
+          </div>
+          <div class="net-controls">
+            <input type="text" id="phil-search" list="phil-list" placeholder="Find a philosopher… (try Galileo Galilei)" />
+            <datalist id="phil-list"></datalist>
+            <label class="chip-toggle"><input type="checkbox" id="toggle-ren" /> highlight 15th–16th c.</label>
+            <button class="btn secondary" id="reheat-btn">Re-run layout</button>
+          </div>
+          <div class="net-stage" id="bb-stage">
+            <svg id="bb-svg" role="img" aria-label="Disparity-filter backbone of the philosopher network, coloured by tradition"></svg>
+            <div class="net-tooltip" id="bb-tooltip"></div>
+          </div>
+          <div class="trad-legend" id="bb-legend"></div>
+          <p class="chart-note" id="bb-count">loading…</p>
+        </div>
+
+        <table class="stats">
+          <thead><tr><th>α</th><th class="num">links kept</th><th class="num">philosophers attached</th><th class="num">giant component</th></tr></thead>
+          <tbody id="bb-table"><tr><td colspan="4">loading…</td></tr></tbody>
+        </table>
+        <p>
+          Between α = 0.2 and 0.1 the giant component halves (816 → 419). The Renaissance does not
+          fall apart any faster than the rest: 65 of its 104 philosophers are in the giant component at
+          0.2 and 34 at 0.1, about the same rate as the network as a whole. So the backbone alone doesn't
+          pick out the bloc; you need the colours from the 200 runs for that. Inside the backbone the
+          biggest bridge is still Aristotle (betweenness 0.23, next is Hegel at 0.14).
+        </p>
+
+        <h2>Caveats (friendly criticism welcome)</h2>
+        <ul>
+          <li>"Era" is the Wikipedia list a philosopher appears on, not a birth year. The 15th–16th list is
+            also the smallest (104), so we used a permutation test rather than just comparing averages.</li>
+          <li>Loyalty depends on how each run's communities are matched to consensus traditions (largest
+            overlap). A bloc that merges two traditions in one run counts as loyal to one of them only.</li>
+          <li>All of this is still Louvain. We tried to add Infomap as an independent check, but it would
+            not build on our machine. That is the next thing to try: does a flow-based method also refuse
+            to give the Renaissance a home?</li>
+          <li>The consensus graph threshold (τ = 0.5) is a parameter. We didn't sweep it.</li>
+        </ul>
+
+        <p class="chart-note">
+          Reproduce: <code>cd analysis &amp;&amp; python week4_renaissance.py</code> (about 2.5 minutes;
+          writes <code>assets/week4_traditions.json</code>). Data: the course's frozen week-4
+          philosopher snapshot (2026-09-15).
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Built for 02805 Social Graphs &amp; Interactions, DTU. Data: Wikipedia lists of philosophers by century, course snapshot 2026-09-15.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script src="../assets/week4.js"></script>
+</body>
+</html>

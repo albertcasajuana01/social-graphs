@@ -33,6 +33,7 @@ analysis/                    — the notebook(s) and data behind each post
   export_data.py               — regenerates network.json / degree_data.json
   week2_models.py              — regenerates week2_models.json (CCDF vs. null models)
   week3_robustness.py          — regenerates week3_robustness.json (attack vs. random failure)
+  week4_renaissance.py         — regenerates week4_traditions.json (Louvain consensus, loyalty, backbone)
   data/                         — frozen weekly snapshots from the course data page
 ```
 
@@ -57,6 +58,15 @@ python week2_models.py    # writes ../assets/week2_models.json (needs networkx, 
 ```bash
 cd analysis
 python week3_robustness.py   # writes ../assets/week3_robustness.json (needs networkx, numpy, pandas)
+```
+
+## Reproducing week 4
+
+Week 4 uses the course's philosopher network (`analysis/data/week4_philosophers_*.tsv`) instead of Marvel.
+
+```bash
+cd analysis
+python week4_renaissance.py   # ~2.5 min; writes ../assets/week4_traditions.json (needs networkx, numpy, pandas, scikit-learn)
 ```
 
 ## Publishing
