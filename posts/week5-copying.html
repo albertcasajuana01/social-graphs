@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 5 — Wikipedia copies the paperwork, not the plot | The Marvel Web</title>
+  <meta name="description" content="We looked for passages that appear word for word on two Marvel character pages. Wikipedia copies publication histories and reading lists, not plot summaries, and only between pages that already link." />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕸️</text></svg>" />
+  <style>
+    .cp-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.8rem; color: var(--text-dim); margin: 10px 0 4px; align-items: center; }
+    .cp-legend .ln { display: inline-block; width: 22px; height: 0; border-top: 3px solid; margin-right: 6px; vertical-align: 3px; }
+    .cp-legend .grad { display: inline-block; width: 70px; height: 10px; border-radius: 3px; margin: 0 6px; vertical-align: -1px; background: linear-gradient(90deg, #3a4460, #ff6ec7); }
+    .hero-panel[hidden] { display: none; }
+    .passage { border-top: 1px solid var(--border); padding-top: 10px; margin-top: 10px; }
+    .passage blockquote { margin: 8px 0 4px; padding: 10px 14px; border-left: 3px solid var(--pow); background: rgba(255,210,63,0.06); border-radius: 0 8px 8px 0; font-size: 0.9rem; color: #e8ecf4; max-height: 220px; overflow: auto; }
+    table.stats td.num, table.stats th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    table.stats tr.hot td { color: var(--pow); }
+    .stat-card .num { font-variant-numeric: tabular-nums; font-size: 1.45rem; }
+    .quote { font-size: 0.93rem; color: #d6dbe6; border-left: 3px solid var(--accent-2); padding: 4px 0 4px 14px; margin: 14px 0; }
+    .table-scroll { overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <h1 class="comic-font">🕸️ The Marvel Web</h1>
+      <p class="tagline">A running log through Social Graphs &amp; Interactions (02805).</p>
+      <nav class="top">
+        <a href="../index.html">Posts</a>
+        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener">Course page ↗</a>
+        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">Source ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <article>
+        <h1>Wikipedia copies the paperwork, not the plot</h1>
+        <p class="meta">Week 5 · From language to numbers · Albert, Viktor &amp; Mariona</p>
+
+        <p>
+          <span class="pow">KRAK!</span> This week the Marvel network gets its text: 303 plain-text Wikipedia
+          articles, one per character, the same 303 nodes we have been drawing since week 1. Superhero plots
+          are famously shared (team-ups, crossovers, the same event told from six sides), so we expected the
+          pages to be full of recycled plot summary. We asked:
+          <strong>when two Marvel pages say exactly the same thing, word for word, what is it they share?</strong>
+        </p>
+        <p>
+          It's mostly not the story. The copied text is the real-world <em>paperwork</em>: who created the
+          character and why, which series they launched in, and which trade paperbacks to buy. The fictional
+          biographies, over a third of all the prose, are almost never copied. And every copied paragraph we
+          found is between two pages that are already linked (one links to the other).
+        </p>
+
+        <h2>What we did</h2>
+        <ul>
+          <li><strong>Prose only.</strong> Each page is cut at its first <em>References / External links /
+            See also / Notes</em> heading, so citation lists can't count as copying. What's left is
+            lower-cased and split into word tokens (<span data-k="tokens">730,054</span> in total).</li>
+          <li><strong>Shingles.</strong> Every run of 8 consecutive tokens is an 8-gram. We index which pages
+            each 8-gram occurs on. An 8-gram on more than 5 pages is <em>boilerplate</em>, not copying ("is a
+            fictional character appearing in American comic books published by Marvel Comics" is on 282
+            pages), so we ignore those.</li>
+          <li><strong>Passages.</strong> For each pair of pages, overlapping shared 8-grams are merged into
+            passages, and we keep passages of 12 tokens or more. Two pages are "copying" if they share at least 30 tokens
+            that way. We call a pair a <strong>paragraph copy</strong> if its longest passage is 40+ tokens,
+            otherwise a <strong>stock phrase</strong>.</li>
+          <li><strong>Sections.</strong> Each token is tagged with the top-level heading it sits under
+            (Publication history, Fictional character biography, Other versions, …), so we can ask
+            <em>where</em> on the page the copied text lives.</li>
+        </ul>
+
+        <div class="stat-grid">
+          <div class="stat-card"><div class="num"><span data-k="edges">42</span> pairs</div><div class="label">of pages share ≥ 30 copied tokens, among <span data-k="pages_copying">60</span> pages</div></div>
+          <div class="stat-card"><div class="num" data-k="para_linked">14 of 14</div><div class="label">paragraph copies are between pages that are linked</div></div>
+          <div class="stat-card"><div class="num" data-k="density">3.1%</div><div class="label">of all page pairs are linked (the baseline)</div></div>
+          <div class="stat-card"><div class="num" data-k="bio">5% vs 37%</div><div class="label">biography's share of copied text vs. of all prose</div></div>
+        </div>
+
+        <h2>1 · The copying is in the paperwork</h2>
+        <p>
+          All the copied text (<span data-k="copied_tokens">8,586</span> tokens, about 1.2% of the corpus),
+          split by the section it sits in, next to how all prose is split. If copying were spread evenly over
+          the page, the two bars would match.
+        </p>
+
+        <div class="chart-app">
+          <div id="section-plot" class="chart-plot" style="height:440px;"></div>
+          <p class="chart-note">
+            Share of tokens per top-level section, for the whole corpus (grey) and for the copied passages only
+            (pink). The 10 sections that hold the most copied text are shown. Variant headings are merged
+            ("Conception and creation" → Creation, "Alternate versions" → Other versions).
+          </p>
+        </div>
+
+        <p>
+          <strong>Fictional character biography</strong> is the biggest section of a Marvel page, 37% of all
+          prose, but only 5.5% of what gets copied. The pages share crossovers, but each one retells them in
+          its own words. <strong>Publication history, Creation and Collected editions</strong> go the other way:
+          20% of the prose, half of the copied text. <em>Collected editions</em> alone is 0.6% of the prose and
+          7% of the copies. Fairness check: the copying pages might just have unusually long publication
+          histories. They don't: on those 60 pages the section mix is almost the same as the corpus
+          (publication history 19%, biography 30%).
+        </p>
+
+        <h2>2 · Who copies whom</h2>
+        <p>
+          Now draw it as a network: one node per page, one edge per copying pair. Yellow edges are paragraph copies,
+          grey edges stock phrases, dashed edges pairs with <em>no</em> link between the pages. Click any
+          edge to read the passage the two pages share; click a page to read all of them.
+        </p>
+
+        <div class="net-app">
+          <div class="net-controls">
+            <input type="text" id="cp-search" list="cp-list" placeholder="Find a page… (try Spider-Woman)" />
+            <datalist id="cp-list"></datalist>
+            <button class="btn secondary" id="cp-reheat">Re-run layout</button>
+          </div>
+          <div class="net-stage" id="cp-stage" style="height:520px;">
+            <svg id="cp-svg" role="img" aria-label="Network of Marvel pages that share copied passages"></svg>
+            <div class="net-tooltip" id="cp-tooltip"></div>
+          </div>
+          <div class="cp-legend">
+            <span><span class="ln" style="border-color:#ffd23f"></span>paragraph copy (longest passage ≥ 40 tokens)</span>
+            <span><span class="ln" style="border-color:#4a5572"></span>stock phrase</span>
+            <span><span class="ln" style="border-color:#9aa5b8;border-top-style:dashed"></span>pages don't link</span>
+            <span>share of page copied: 0%<span class="grad"></span>25%</span>
+            <span>size = page length</span>
+          </div>
+          <div class="hero-panel" id="cp-panel" hidden></div>
+        </div>
+
+        <p>
+          The copying graph is 21 small islands, none bigger than seven pages. The 14 paragraph copies
+          come in four kinds, and we read every one:
+        </p>
+        <ul>
+          <li><strong>One mantle, several pages.</strong> Spider-Woman is an overview page for the name. Its
+            <em>Other versions</em> section shares 150–170-token alternate-universe stories word for word with
+            Spider-Girl's and Mayday Parker's pages, and
+            its publication history shares a long Stan Lee quote with Jessica Drew's page: <span class="quote" style="display:block">"…I suddenly realized that some other company may quickly put out a book like that and claim they have the right to use the name… I wanted to protect the name…"</span>
+            The same pattern shows up for Ghost Rider / Johnny Blaze, Union Jack / Joseph Chapman, and Bucky / Rikki Barnes.</li>
+          <li><strong>Same team, same launch.</strong> Ch'od and Raza Longknife both open with the same
+            story about Dave Cockrum pitching the Starjammers and being told Marvel's try-out titles were "booked for two
+            years solid". Blue Diamond and Jack Frost share the Liberty Legion's history. On these small pages
+            that is 14–25% of the prose.</li>
+          <li><strong>One reading list, three pages.</strong> Spitfire and both Union Jack pages carry the same
+            <em>Collected editions</em> list, trade paperbacks and ISBNs included (a 140-token stretch).</li>
+          <li><strong>A shared behind-the-scenes story.</strong> Cyclops and Jean Grey share 607 tokens in
+            19 passages, including a 104-token account of the X-Factor relaunch: Jean's resurrection, Cyclops leaving his wife and
+            child, Claremont's "dismay", Bob Layton's Ghostbusters inspiration. Eddie Brock and Venom share the
+            origin of the alien costume: John Byrne's idea of a self-repairing costume, passed to Roger Stern,
+            then to Tom DeFalco and Ron Frenz, who made it a living alien. In both
+            pairs the history belongs equally to both characters, so both pages tell it, in the same words.</li>
+        </ul>
+
+        <div class="callout">
+          <strong>Does copying follow the links?</strong> Very strongly. <span data-k="frac_linked">83%</span> of
+          all copying pairs are linked, and all 14 paragraph copies are, against a 3.1% baseline. We checked the
+          7 unlinked pairs by hand. Every one is a stock phrase: a listicle citation ("in their '20 X-Men
+          characters that should make the jump from Marvel comics to the MCU' list"), a lead-section template
+          shared by She-Hulk, Black Cat and Black Bolt ("Since her original introduction in comics, the
+          character has been featured in various other Marvel-licensed products, including…"), or the
+          <em>House of X</em> Krakoa sentence that turns up on Storm, Rachel Summers and Wild Child. Copied
+          text never jumps between unrelated corners of the network.
+        </div>
+
+        <h2>3 · The small pages are the most borrowed</h2>
+        <p>
+          Per page: what share of its prose also appears, word for word, on another page?
+        </p>
+        <div class="table-scroll">
+          <table class="stats" id="borrowed-table">
+            <thead><tr><th>Page</th><th class="num">prose shared</th><th class="num">tokens</th><th class="num">in-degree</th></tr></thead>
+            <tbody><tr><td colspan="4">loading…</td></tr></tbody>
+          </table>
+        </div>
+        <p>
+          The top of the list is minor characters: Ch'od (in-degree 4), Blue Diamond (1), Raza Longknife (2),
+          Jack Frost (1). For each, the team or mantle they belong to is most of what there is to say, so a
+          quarter of the page is the team's story. Among the 60 copying pages, the share borrowed goes
+          <em>down</em> as in-degree goes up (r = −0.31 with log in-degree). The famous pages copy too (13% of
+          Cyclops' page is shared, almost all of it with Jean Grey), but it's a small part of a much longer page.
+        </p>
+
+        <h2>What surprised us</h2>
+        <p>
+          We expected plot, and we got bibliography. With hindsight it makes sense. A plot summary is
+          written from one character's point of view, so the same battle gets retold from each side. A
+          publication history is a fact about the comic, not the character, so when two characters debuted in the
+          same series there is one true paragraph and Wikipedia uses it twice. The one place plot does get
+          copied is an overview page quoting a relative's story (Spider-Woman's <em>Other versions</em>, the
+          Ghost Rider hosts).
+        </p>
+
+        <h2>Is it robust?</h2>
+        <p>
+          Our three thresholds are choices, so we reran with the boilerplate cut at 3, 5 and 10 pages and the
+          minimum passage at 8, 12 and 20 tokens:
+        </p>
+        <div class="table-scroll">
+          <table class="stats" id="sens-table">
+            <thead><tr><th class="num">boilerplate if on &gt; pages</th><th class="num">min passage</th><th class="num">copy pairs</th>
+              <th class="num">linked</th><th class="num">paragraph copies (linked)</th><th class="num">publication + creation</th><th class="num">biography</th></tr></thead>
+            <tbody><tr><td colspan="7">loading…</td></tr></tbody>
+          </table>
+        </div>
+        <p>
+          The number of copying pairs swings a lot (21 to 236). Loose settings let in many more short stock phrases of
+          the kind described above. The main result doesn't move: the same 14 paragraph copies, all linked, in every
+          setting, and biography never above 8% of copied text. The row we report is highlighted.
+        </p>
+
+        <h2>Limitations (friendly criticism welcome)</h2>
+        <ul>
+          <li><strong>Verbatim only.</strong> 8-grams find copy-paste, not paraphrase. The biographies may
+            well share content that was reworded, and this method can't see it. "The plot isn't copied" really
+            means "the plot isn't copied <em>word for word</em>". Next week's TF-IDF and cosine similarity are
+            the natural tools for the paraphrased version.</li>
+          <li><strong>No direction.</strong> A single snapshot can't say which page had the paragraph first. The
+            edit histories could, and we didn't check them.</li>
+          <li><strong>Section tags are approximate.</strong> Plain text loses heading levels, so we tag tokens
+            with the last heading from a list of known top-level ones. On Ghost Rider, the per-host histories sit
+            under <em>Powers and abilities</em> and get tagged that way.</li>
+        </ul>
+
+        <p class="chart-note">
+          Reproduce: <code>cd analysis &amp;&amp; python week5_copying.py</code> (about a minute; writes
+          <code>assets/week5_copying.json</code>). Data: the course's frozen Marvel snapshot
+          (<code>marvel_pages.zip</code> + week-1 network, 2026-08-26).
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Built for 02805 Social Graphs &amp; Interactions, DTU. Data: Wikipedia <code>Category:Marvel Comics superheroes</code>, frozen snapshot 2026-08-26.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script src="../assets/week5.js"></script>
+</body>
+</html>

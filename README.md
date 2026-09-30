@@ -34,6 +34,7 @@ analysis/                    — the notebook(s) and data behind each post
   week2_models.py              — regenerates week2_models.json (CCDF vs. null models)
   week3_robustness.py          — regenerates week3_robustness.json (attack vs. random failure)
   week4_renaissance.py         — regenerates week4_traditions.json (Louvain consensus, loyalty, backbone)
+  week5_copying.py             — regenerates week5_copying.json (shared 8-gram passages between pages)
   data/                         — frozen weekly snapshots from the course data page
 ```
 
@@ -67,6 +68,15 @@ Week 4 uses the course's philosopher network (`analysis/data/week4_philosophers_
 ```bash
 cd analysis
 python week4_renaissance.py   # ~2.5 min; writes ../assets/week4_traditions.json (needs networkx, numpy, pandas, scikit-learn)
+```
+
+## Reproducing week 5
+
+Week 5 adds the page text (`analysis/data/marvel_pages.zip`, the course's week-5 release).
+
+```bash
+cd analysis
+python week5_copying.py   # ~1 min; writes ../assets/week5_copying.json (needs networkx, numpy, pandas)
 ```
 
 ## Publishing
