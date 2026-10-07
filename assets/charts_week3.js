@@ -4,11 +4,11 @@
   const baseLayout = {
     paper_bgcolor: "rgba(0,0,0,0)",
     plot_bgcolor: "rgba(0,0,0,0)",
-    font: { color: "#e8ecf4", family: "Inter, sans-serif" },
+    font: { color: "#ecebe6", family: "Inter, -apple-system, sans-serif" },
     margin: { l: 60, r: 20, t: 20, b: 55 },
     legend: { orientation: "h", y: -0.25 },
-    xaxis: { gridcolor: "#232b3d", zerolinecolor: "#232b3d" },
-    yaxis: { gridcolor: "#232b3d", zerolinecolor: "#232b3d", range: [0, 1.02] },
+    xaxis: { gridcolor: "#24242a", zerolinecolor: "#24242a" },
+    yaxis: { gridcolor: "#24242a", zerolinecolor: "#24242a", range: [0, 1.02] },
   };
 
   const PLOT_OPTS = { displayModeBar: false, responsive: true };
@@ -36,7 +36,7 @@
         mode: "lines",
         type: "scatter",
         name: `random failure (mean of ${data.meta.random_trials} trials)`,
-        line: { color: "#4dd9c9", width: 2, dash: "dash" },
+        line: { color: "#199e70", width: 2, dash: "dash" },
       },
       {
         x,
@@ -44,7 +44,7 @@
         mode: "lines",
         type: "scatter",
         name: "targeted attack (by degree)",
-        line: { color: "#ff6ec7", width: 2, dash: "dot" },
+        line: { color: "#e8765a", width: 2, dash: "dot" },
       },
       {
         x,
@@ -52,7 +52,7 @@
         mode: "lines",
         type: "scatter",
         name: "targeted attack (by betweenness)",
-        line: { color: "#ffd23f", width: 2 },
+        line: { color: "#e0b85a", width: 2 },
       },
     ];
 

@@ -33,7 +33,7 @@
     .attr("orient", "auto-start-reverse")
     .append("path")
     .attr("d", "M0,-5L10,0L0,5")
-    .attr("fill", "#7c8bab");
+    .attr("fill", "#8a8982");
 
   const zoomBehavior = d3.zoom().scaleExtent([0.15, 6]).on("zoom", (event) => {
     zoomLayer.attr("transform", event.transform);
@@ -88,7 +88,7 @@
         .selectAll("line")
         .data(edgesData)
         .join("line")
-        .attr("stroke", "#3a4a63")
+        .attr("stroke", "#3a3a40")
         .attr("stroke-width", 0.7)
         .attr("stroke-opacity", 0.55);
 
@@ -98,7 +98,7 @@
         .join("circle")
         .attr("r", radius)
         .attr("fill", (d) => color(d.in))
-        .attr("stroke", "#05070c")
+        .attr("stroke", "#08080a")
         .attr("stroke-width", 0.6)
         .style("cursor", "pointer")
         .on("mouseenter", onHoverIn)

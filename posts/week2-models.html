@@ -4,27 +4,34 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Week 2 — Degree distribution vs. random models | The Marvel Web</title>
+  <meta name="theme-color" content="#0c0c0e" />
   <link rel="stylesheet" href="../style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕸️</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230c0c0e%22/><g stroke=%22%23e0b85a%22 stroke-width=%221.6%22 fill=%22none%22><path d=%22M7 22L16 8l9 14M7 22h18M16 8v14%22/></g><g fill=%22%23ecebe6%22><circle cx=%2216%22 cy=%228%22 r=%222.4%22/><circle cx=%227%22 cy=%2222%22 r=%222.4%22/><circle cx=%2225%22 cy=%2222%22 r=%222.4%22/></g></svg>" />
 </head>
 <body>
-  <header class="site">
-    <div class="wrap">
-      <h1 class="comic-font">🕸️ The Marvel Web</h1>
-      <p class="tagline">A running log through Social Graphs &amp; Interactions (02805).</p>
-      <nav class="top">
+  <header class="topbar">
+    <div class="inner">
+      <a class="wordmark" href="../index.html">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g stroke="#e0b85a" stroke-width="1.4" fill="none"><path d="M7 22L16 8l9 14M7 22h18M16 8v14"/></g><g fill="#ecebe6"><circle cx="16" cy="8" r="2.4"/><circle cx="7" cy="22" r="2.4"/><circle cx="25" cy="22" r="2.4"/></g></svg>
+        The Marvel <em>Web</em>
+      </a>
+      <nav>
         <a href="../index.html">Posts</a>
-        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener">Course page ↗</a>
+        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener" class="hide-sm">Course ↗</a>
         <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">Source ↗</a>
       </nav>
     </div>
+    <div class="progress"></div>
   </header>
 
   <main>
     <div class="wrap">
       <article>
-        <h1>Degree distribution vs. random models</h1>
-        <p class="meta">Week 2 · Real degree distribution &amp; benchmark graphs · Albert, Viktor &amp; Mariona</p>
+        <div class="article-head">
+          <p class="kicker">Week 2 · Real degree distribution &amp; benchmark graphs</p>
+          <h1>Degree distribution vs. random models</h1>
+          <div class="byline"><span><b>Albert, Viktor &amp; Mariona</b></span></div>
+        </div>
 
         <p>
           The real week-1 network is a 303-node Marvel superhero graph with <strong>1,434 undirected edges</strong>,
@@ -86,12 +93,20 @@
   </main>
 
   <footer>
-    <div class="wrap">
-      Built for 02805 Social Graphs &amp; Interactions, DTU. Data: Wikipedia <code>Category:Marvel Comics superheroes</code>, frozen week-1 snapshot.
+    <div class="inner">
+      <div>
+        <div class="fm">The Marvel Web</div>
+        Built for 02805 Social Graphs &amp; Interactions, DTU.<br />Data: Wikipedia <code>Category:Marvel Comics superheroes</code>, frozen snapshot 2026-08-26.
+      </div>
+      <div class="links">
+        <a href="../index.html">All posts</a>
+        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">GitHub</a>
+      </div>
     </div>
   </footer>
 
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   <script src="../assets/charts_week2.js"></script>
+  <script src="../assets/site.js"></script>
 </body>
 </html>

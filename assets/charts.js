@@ -4,11 +4,11 @@
   const baseLayout = {
     paper_bgcolor: "rgba(0,0,0,0)",
     plot_bgcolor: "rgba(0,0,0,0)",
-    font: { color: "#e8ecf4", family: "Inter, sans-serif" },
+    font: { color: "#ecebe6", family: "Inter, -apple-system, sans-serif" },
     margin: { l: 55, r: 20, t: 10, b: 45 },
     legend: { orientation: "h", y: -0.22 },
-    xaxis: { gridcolor: "#232b3d", zerolinecolor: "#232b3d" },
-    yaxis: { gridcolor: "#232b3d", zerolinecolor: "#232b3d" },
+    xaxis: { gridcolor: "#24242a", zerolinecolor: "#24242a" },
+    yaxis: { gridcolor: "#24242a", zerolinecolor: "#24242a" },
   };
   const PLOT_OPTS = { displayModeBar: false, responsive: true };
 
@@ -30,7 +30,7 @@
       mode: "markers",
       type: "scatter",
       name: "raw count",
-      marker: { color: metric === "in" ? "#ff6ec7" : "#6c63ff", size: 8 },
+      marker: { color: metric === "in" ? "#e8765a" : "#3987e5", size: 8 },
       text: d.raw_x.map((v) => {
         const ex = d.top_examples[String(v)];
         return ex && ex.length ? "e.g. " + ex.join(", ") : "";
@@ -43,8 +43,8 @@
       mode: "lines+markers",
       type: "scatter",
       name: "log-binned",
-      line: { color: "#ffd23f", width: 2 },
-      marker: { size: 5, color: "#ffd23f" },
+      line: { color: "#e0b85a", width: 2 },
+      marker: { size: 5, color: "#e0b85a" },
       hovertemplate: "bin center = %{x:.1f}<br>count / width = %{y:.2f}<extra></extra>",
     };
     return [raw, binned];
@@ -65,15 +65,15 @@
     const traces = [
       {
         x: td.exponential.x, y: td.exponential.y, mode: "lines+markers", name: "exponential",
-        line: { color: "#4dd9c9" }, marker: { size: 4, color: "#4dd9c9" },
+        line: { color: "#199e70" }, marker: { size: 4, color: "#199e70" },
       },
       {
         x: td.powerlaw.x, y: td.powerlaw.y, mode: "lines+markers", name: "power law",
-        line: { color: "#ff4d5e" }, marker: { size: 4, color: "#ff4d5e" },
+        line: { color: "#e66767" }, marker: { size: 4, color: "#e66767" },
       },
       {
         x: td.real_indegree.x, y: td.real_indegree.y, mode: "lines+markers", name: "real in-degree (k+1)",
-        line: { color: "#ffd23f" }, marker: { size: 6, color: "#ffd23f" },
+        line: { color: "#e0b85a" }, marker: { size: 6, color: "#e0b85a" },
       },
     ];
     const layout = Object.assign({}, baseLayout, {

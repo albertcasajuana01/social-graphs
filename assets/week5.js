@@ -1,17 +1,17 @@
 (function () {
-  const PROSE = "#6b7385";
+  const PROSE = "#6b6a64";
   const COPIED = "#d55181";
-  const PARA = "#ffd23f";
-  const PHRASE = "#4a5572";
+  const PARA = "#e0b85a";
+  const PHRASE = "#4a4a50";
   const PLOT_OPTS = { displayModeBar: false, responsive: true };
   const baseLayout = {
     paper_bgcolor: "rgba(0,0,0,0)",
     plot_bgcolor: "rgba(0,0,0,0)",
-    font: { color: "#e8ecf4", family: "Inter, sans-serif", size: 12 },
+    font: { color: "#ecebe6", family: "Inter, -apple-system, sans-serif", size: 12 },
     margin: { l: 190, r: 20, t: 10, b: 50 },
-    hoverlabel: { bgcolor: "#05070c", bordercolor: "#6c63ff", font: { color: "#e8ecf4" } },
-    xaxis: { gridcolor: "#232b3d", zerolinecolor: "#232b3d", linecolor: "#232b3d" },
-    yaxis: { gridcolor: "#232b3d", zerolinecolor: "#232b3d", linecolor: "#232b3d" },
+    hoverlabel: { bgcolor: "#08080a", bordercolor: "#3987e5", font: { color: "#ecebe6" } },
+    xaxis: { gridcolor: "#24242a", zerolinecolor: "#24242a", linecolor: "#24242a" },
+    yaxis: { gridcolor: "#24242a", zerolinecolor: "#24242a", linecolor: "#24242a" },
   };
   const pct = (x, d = 0) => `${(100 * x).toFixed(d)}%`;
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -64,9 +64,9 @@
     const layout = Object.assign({}, baseLayout, {
       barmode: "group", bargap: 0.25, bargroupgap: 0.08,
       showlegend: true,
-      legend: { orientation: "h", x: 0, y: 1.08, font: { color: "#9aa5b8" } },
+      legend: { orientation: "h", x: 0, y: 1.08, font: { color: "#a3a29b" } },
       margin: { l: 190, r: 20, t: 36, b: 44 },
-      xaxis: Object.assign({}, baseLayout.xaxis, { tickformat: ".0%", title: { text: "share of tokens", font: { color: "#9aa5b8" } } }),
+      xaxis: Object.assign({}, baseLayout.xaxis, { tickformat: ".0%", title: { text: "share of tokens", font: { color: "#a3a29b" } } }),
       yaxis: Object.assign({}, baseLayout.yaxis, { automargin: true }),
     });
     Plotly.newPlot("section-plot", traces, layout, PLOT_OPTS);
@@ -104,7 +104,7 @@
     const nodes = d.nodes.map((n) => Object.assign({}, n));
     const links = d.edges.map((e) => Object.assign({ source: e.a, target: e.b }, e));
     const r = d3.scaleSqrt().domain([0, d3.max(nodes, (n) => n.tokens)]).range([3, 20]);
-    const fill = d3.scaleSequential(d3.interpolateRgb("#3a4460", "#ff6ec7")).domain([0, 0.25]).clamp(true);
+    const fill = d3.scaleSequential(d3.interpolateRgb("#3a3a40", "#e8765a")).domain([0, 0.25]).clamp(true);
     const width = d3.scaleSqrt().domain([30, d3.max(links, (l) => l.shared)]).range([1, 7]);
     const labelled = new Set(links.filter((l) => l.kind === "paragraph").flatMap((l) => [l.a, l.b]));
 
@@ -125,7 +125,7 @@
     const node = g.append("g").selectAll("circle").data(nodes).join("circle")
       .attr("r", (n) => r(n.tokens))
       .attr("fill", (n) => fill(n.borrowed))
-      .attr("stroke", "#05070c").attr("stroke-width", 1.2)
+      .attr("stroke", "#08080a").attr("stroke-width", 1.2)
       .style("cursor", "pointer")
       .on("mousemove", (ev, n) => showTip(ev, `<strong>${esc(n.name)}</strong>
           <div class="td">${pct(n.borrowed, 1)} of its prose is shared with another page<br>${n.tokens.toLocaleString("en")} tokens · linked to by ${n.indeg} pages</div>`))
@@ -139,7 +139,7 @@
     const label = g.append("g").selectAll("text").data(nodes.filter((n) => labelled.has(n.id))).join("text")
       .text((n) => n.name.replace(/ \((character|Marvel Comics)\)$/, ""))
       .attr("font-size", 10).attr("fill", "#c9d1e0").attr("pointer-events", "none")
-      .attr("paint-order", "stroke").attr("stroke", "#05070c").attr("stroke-width", 3);
+      .attr("paint-order", "stroke").attr("stroke", "#08080a").attr("stroke-width", 3);
 
     const sim = d3.forceSimulation(nodes)
       .force("link", d3.forceLink(links).id((n) => n.id).distance(55).strength(0.9))

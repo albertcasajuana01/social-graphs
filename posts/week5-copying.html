@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Week 5 — Wikipedia copies the paperwork, not the plot | The Marvel Web</title>
   <meta name="description" content="We looked for passages that appear word for word on two Marvel character pages. Wikipedia copies publication histories and reading lists, not plot summaries, and only between pages that already link." />
+  <meta name="theme-color" content="#0c0c0e" />
   <link rel="stylesheet" href="../style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕸️</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230c0c0e%22/><g stroke=%22%23e0b85a%22 stroke-width=%221.6%22 fill=%22none%22><path d=%22M7 22L16 8l9 14M7 22h18M16 8v14%22/></g><g fill=%22%23ecebe6%22><circle cx=%2216%22 cy=%228%22 r=%222.4%22/><circle cx=%227%22 cy=%2222%22 r=%222.4%22/><circle cx=%2225%22 cy=%2222%22 r=%222.4%22/></g></svg>" />
   <style>
     .cp-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.8rem; color: var(--text-dim); margin: 10px 0 4px; align-items: center; }
     .cp-legend .ln { display: inline-block; width: 22px; height: 0; border-top: 3px solid; margin-right: 6px; vertical-align: 3px; }
-    .cp-legend .grad { display: inline-block; width: 70px; height: 10px; border-radius: 3px; margin: 0 6px; vertical-align: -1px; background: linear-gradient(90deg, #3a4460, #ff6ec7); }
+    .cp-legend .grad { display: inline-block; width: 70px; height: 10px; border-radius: 3px; margin: 0 6px; vertical-align: -1px; background: linear-gradient(90deg, #3a3a40, #e8765a); }
     .hero-panel[hidden] { display: none; }
     .passage { border-top: 1px solid var(--border); padding-top: 10px; margin-top: 10px; }
-    .passage blockquote { margin: 8px 0 4px; padding: 10px 14px; border-left: 3px solid var(--pow); background: rgba(255,210,63,0.06); border-radius: 0 8px 8px 0; font-size: 0.9rem; color: #e8ecf4; max-height: 220px; overflow: auto; }
+    .passage blockquote { margin: 8px 0 4px; padding: 10px 14px; border-left: 3px solid var(--pow); background: rgba(224,184,90,0.06); border-radius: 0 8px 8px 0; font-size: 0.9rem; color: #ecebe6; max-height: 220px; overflow: auto; }
     table.stats td.num, table.stats th.num { text-align: right; font-variant-numeric: tabular-nums; }
     table.stats tr.hot td { color: var(--pow); }
     .stat-card .num { font-variant-numeric: tabular-nums; font-size: 1.45rem; }
@@ -22,23 +23,29 @@
   </style>
 </head>
 <body>
-  <header class="site">
-    <div class="wrap">
-      <h1 class="comic-font">🕸️ The Marvel Web</h1>
-      <p class="tagline">A running log through Social Graphs &amp; Interactions (02805).</p>
-      <nav class="top">
+  <header class="topbar">
+    <div class="inner">
+      <a class="wordmark" href="../index.html">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g stroke="#e0b85a" stroke-width="1.4" fill="none"><path d="M7 22L16 8l9 14M7 22h18M16 8v14"/></g><g fill="#ecebe6"><circle cx="16" cy="8" r="2.4"/><circle cx="7" cy="22" r="2.4"/><circle cx="25" cy="22" r="2.4"/></g></svg>
+        The Marvel <em>Web</em>
+      </a>
+      <nav>
         <a href="../index.html">Posts</a>
-        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener">Course page ↗</a>
+        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener" class="hide-sm">Course ↗</a>
         <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">Source ↗</a>
       </nav>
     </div>
+    <div class="progress"></div>
   </header>
 
   <main>
     <div class="wrap">
       <article>
-        <h1>Wikipedia copies the paperwork, not the plot</h1>
-        <p class="meta">Week 5 · From language to numbers · Albert, Viktor &amp; Mariona</p>
+        <div class="article-head">
+          <p class="kicker">Week 5 · From language to numbers</p>
+          <h1>Wikipedia copies the paperwork, not the plot</h1>
+          <div class="byline"><span><b>Albert, Viktor &amp; Mariona</b></span></div>
+        </div>
 
         <p>
           <span class="pow">KRAK!</span> This week the Marvel network gets its text: 303 plain-text Wikipedia
@@ -123,9 +130,9 @@
             <div class="net-tooltip" id="cp-tooltip"></div>
           </div>
           <div class="cp-legend">
-            <span><span class="ln" style="border-color:#ffd23f"></span>paragraph copy (longest passage ≥ 40 tokens)</span>
-            <span><span class="ln" style="border-color:#4a5572"></span>stock phrase</span>
-            <span><span class="ln" style="border-color:#9aa5b8;border-top-style:dashed"></span>pages don't link</span>
+            <span><span class="ln" style="border-color:#e0b85a"></span>paragraph copy (longest passage ≥ 40 tokens)</span>
+            <span><span class="ln" style="border-color:#4a4a50"></span>stock phrase</span>
+            <span><span class="ln" style="border-color:#a3a29b;border-top-style:dashed"></span>pages don't link</span>
             <span>share of page copied: 0%<span class="grad"></span>25%</span>
             <span>size = page length</span>
           </div>
@@ -236,13 +243,21 @@
   </main>
 
   <footer>
-    <div class="wrap">
-      Built for 02805 Social Graphs &amp; Interactions, DTU. Data: Wikipedia <code>Category:Marvel Comics superheroes</code>, frozen snapshot 2026-08-26.
+    <div class="inner">
+      <div>
+        <div class="fm">The Marvel Web</div>
+        Built for 02805 Social Graphs &amp; Interactions, DTU.<br />Data: Wikipedia <code>Category:Marvel Comics superheroes</code>, frozen snapshot 2026-08-26.
+      </div>
+      <div class="links">
+        <a href="../index.html">All posts</a>
+        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">GitHub</a>
+      </div>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   <script src="../assets/week5.js"></script>
+  <script src="../assets/site.js"></script>
 </body>
 </html>

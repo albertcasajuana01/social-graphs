@@ -22,8 +22,10 @@ charts, both fed by JSON exported from the analysis notebook.
 ```
 index.html                 — post listing
 posts/                      — one HTML page per week's post
-style.css                    — shared site styling (comic/pop-art dark theme)
+style.css                    — shared site styling (editorial dark theme: Instrument Serif + Inter, one gold accent)
 assets/
+  site.js                     — shared chrome: sticky bar, reading progress, contents rail, prev/next, masthead network
+  week6.js, week6.css         — week-6 figures (pair inspector, lookalike wall, rewiring, scatter, gender)
   network.js, network.json    — interactive D3 force-directed network (posts/week1)
   charts.js, degree_data.json — interactive Plotly degree-distribution charts
   giant-component.png, morituri-island.png — static fallback figures (pre-interactive draft)
@@ -35,6 +37,7 @@ analysis/                    — the notebook(s) and data behind each post
   week3_robustness.py          — regenerates week3_robustness.json (attack vs. random failure)
   week4_renaissance.py         — regenerates week4_traditions.json (Louvain consensus, loyalty, backbone)
   week5_copying.py             — regenerates week5_copying.json (shared 8-gram passages between pages)
+  week6_names.py               — regenerates week6_names.json + week6_conc.json (TF-IDF cosine split into names / paperwork / story)
   data/                         — frozen weekly snapshots from the course data page
 ```
 
@@ -77,6 +80,13 @@ Week 5 adds the page text (`analysis/data/marvel_pages.zip`, the course's week-5
 ```bash
 cd analysis
 python week5_copying.py   # ~1 min; writes ../assets/week5_copying.json (needs networkx, numpy, pandas)
+```
+
+## Reproducing week 6
+
+```bash
+cd analysis
+python week6_names.py   # ~20 s; writes ../assets/week6_names.json and ../assets/week6_conc.json (needs networkx, numpy, pandas, scikit-learn)
 ```
 
 ## Publishing

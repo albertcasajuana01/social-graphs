@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 6 — Names or story? | The Marvel Web</title>
+  <meta name="description" content="A TF-IDF cosine is a sum over words, so every Marvel lookalike can be split exactly into shared names, shared paperwork and shared story. For 98% of pages the lookalike is mostly a name. Remove the names and the lookalikes rewire into families of powers the link network never connected." />
+  <meta name="theme-color" content="#0c0c0e" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../assets/week6.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230c0c0e%22/><g stroke=%22%23e0b85a%22 stroke-width=%221.6%22 fill=%22none%22><path d=%22M7 22L16 8l9 14M7 22h18M16 8v14%22/></g><g fill=%22%23ecebe6%22><circle cx=%2216%22 cy=%228%22 r=%222.4%22/><circle cx=%227%22 cy=%2222%22 r=%222.4%22/><circle cx=%2225%22 cy=%2222%22 r=%222.4%22/></g></svg>" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="inner">
+      <a class="wordmark" href="../index.html">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g stroke="#e0b85a" stroke-width="1.4" fill="none"><path d="M7 22L16 8l9 14M7 22h18M16 8v14"/></g><g fill="#ecebe6"><circle cx="16" cy="8" r="2.4"/><circle cx="7" cy="22" r="2.4"/><circle cx="25" cy="22" r="2.4"/></g></svg>
+        The Marvel <em>Web</em>
+      </a>
+      <nav>
+        <a href="../index.html">Posts</a>
+        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener" class="hide-sm">Course ↗</a>
+        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">Source ↗</a>
+      </nav>
+    </div>
+    <div class="progress"></div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <article>
+        <div class="article-head">
+          <p class="kicker">Week 06 · From counts to meaning</p>
+          <h1>Names or <em>story</em>?</h1>
+          <p class="dek">When TF-IDF says two Marvel pages are alike, how much of that comes from the characters' names, and how much from what happens to them? A cosine similarity is a sum over words, so we can answer exactly, for every one of the 45,753 pairs.</p>
+          <div class="byline">
+            <span><b>Albert, Viktor &amp; Mariona</b></span>
+            <span>Representation: TF-IDF + cosine, split word by word</span>
+            <span>303 pages · week-1 link network</span>
+            <span>12 min read</span>
+          </div>
+        </div>
+
+        <div class="stat-grid reveal">
+          <div class="stat-card"><div class="num"><em>98%</em></div><div class="label">of pages have a lookalike that matches them <b>mostly on names</b></div></div>
+          <div class="stat-card"><div class="num">29→87%</div><div class="label">names' share of a page's <b>words</b> vs. of its <b>TF-IDF vector</b> (medians)</div></div>
+          <div class="stat-card"><div class="num">76%</div><div class="label">of lookalikes <b>change</b> once only story words count</div></div>
+          <div class="stat-card"><div class="num">71→46%</div><div class="label">of lookalikes are pages that <b>link</b> to each other, before vs. after</div></div>
+        </div>
+
+        <h2 id="question"><span class="sec">01 · The question</span>Storm is not the Human Torch</h2>
+        <p class="lead-p">
+          In the course explorable, TF-IDF puts Storm right next to the Human Torch. They aren't on the same team or
+          in the same story, and they have different powers. The Human Torch is <em>Johnny Storm</em>, and the
+          word <strong>storm</strong> shows up all over both pages. One shared surname was enough to make them the closest
+          pair.
+        </p>
+        <p>
+          That made us suspicious of every "most similar character" list we had built this week. So we asked one
+          question about the whole corpus:
+        </p>
+        <p class="pull">When two Marvel pages look alike to TF-IDF, how much of the match is <em>names</em>, and how much is <em>story</em>? And once the names are handled, who resembles whom?</p>
+        <p>
+          It matters for the network too. A hyperlink from page A to page B means A mentions B by name, so a
+          similarity built on names may just be the link network read back from the text. A similarity built on
+          story could tell us something the links don't.
+        </p>
+
+        <h2 id="receipt"><span class="sec">02 · The trick</span>A cosine is a receipt</h2>
+        <p>
+          Each page is a TF-IDF vector over 14,402 words, scaled to length 1. The cosine between two unit vectors is
+          their dot product, a plain <strong>sum over words</strong>:
+        </p>
+        <div class="eq reveal">cos(<i>a</i>, <i>b</i>) = <span class="eq-sum">Σ<sub>t</sub></span> <i>a</i><sub>t</sub> · <i>b</i><sub>t</sub> = <span class="k-name">Σ<sub>names</sub></span> + <span class="k-paper">Σ<sub>paperwork</sub></span> + <span class="k-story">Σ<sub>story</sub></span></div>
+        <p>
+          Each word adds its own product, and nothing else contributes. So any cosine can be split into
+          exact parts, with no approximation or second model. We sort every word into one of three classes,
+          using two rules we can defend:
+        </p>
+        <div class="classes reveal">
+          <div class="cls"><span class="sw k-name-bg"></span><h3>Names</h3><p>A word is a name if <b>more than half</b> of its uses in the corpus are capitalized. This is the course's rule. It catches <i>storm, frost, kane, peter, avengers, claremont</i>, so teams, places and writers count as names too.</p><div class="ex" id="ex-name"></div></div>
+          <div class="cls"><span class="sw k-paper-bg"></span><h3>Paperwork</h3><p>A non-name word is paperwork if <b>more than 70%</b> of its uses sit in the real-world sections (Publication history, Creation, In other media, Reception, Collected editions). Those sections hold 34% of all words, so 70% means at least twice that.</p><div class="ex" id="ex-paper"></div></div>
+          <div class="cls"><span class="sw k-story-bg"></span><h3>Story</h3><p>Everything else: what the characters are, do and suffer. <i>Symbiote, vampire, armor, telekinetic, mutant, resurrection.</i> These are 9,314 of the 14,402 words.</p><div class="ex" id="ex-story"></div></div>
+        </div>
+
+        <div class="fig bleed reveal" id="fig1">
+          <div class="fig-head">
+            <div class="fig-no">Figure 1 · Anatomy of a lookalike</div>
+            <h3 class="fig-title">Pick a pair and see which words make up its cosine</h3>
+          </div>
+          <div class="fig-body">
+            <div class="controls">
+              <div class="seg" id="f1-picks" role="group" aria-label="Example pairs"></div>
+            </div>
+            <div id="f1-insp" class="insp"></div>
+          </div>
+          <p class="fig-cap">
+            <b>The bar is the whole cosine.</b> Each segment is one word's product <i>a<sub>t</sub>·b<sub>t</sub></i>,
+            sorted by class. The 14 largest words are shown and the rest are merged into "other". Below the bar,
+            pick a word to read its <b>concordance lines</b>: the sentences where it occurs on each page. That's how
+            we checked every claim in this post. Storm ↔ Human Torch: 0.37 of the 0.40 comes from the one word
+            <i>storm</i>.
+          </p>
+        </div>
+
+        <h2 id="wall"><span class="sec">03 · The answer</span>Almost every lookalike is a name</h2>
+        <p>
+          Now do it for every page. For each of the 303 pages, take its nearest neighbor, the page with the highest
+          cosine, and split that cosine into names, paperwork and story. Then line the 303 bars up.
+        </p>
+
+        <div class="fig bleed reveal" id="fig2">
+          <div class="fig-head">
+            <div class="fig-no">Figure 2 · The nearest neighbor of every page</div>
+            <h3 class="fig-title">303 lookalikes, split by what they share</h3>
+          </div>
+          <div class="fig-body">
+            <div class="controls">
+              <div class="seg" id="f2-mode" role="group" aria-label="Bar height">
+                <button data-v="share" class="active">Share of cosine</button>
+                <button data-v="abs">Raw cosine</button>
+              </div>
+              <label class="chip-toggle on"><input type="checkbox" id="f2-one" checked /> Mark one-name matches</label>
+              <input type="search" id="f2-find" list="char-list" placeholder="Find a character…" aria-label="Find a character" />
+            </div>
+            <p class="how">One thin bar per page, sorted by how much of its match is names. Hover a bar for the pair and its top words. Click it to inspect it below.</p>
+            <div class="legend" id="f2-legend"></div>
+            <div class="chart" id="f2-chart"></div>
+            <div id="f2-insp" class="insp insp-dock" hidden></div>
+          </div>
+          <p class="fig-cap">
+            Bar = the cosine between a page and its single most similar page, split into the three word classes
+            (with <b>Share of cosine</b>, each bar is scaled to 100%). The dashed line is 50%. A gold tick under a bar
+            means a <b>one-name match</b>: a single name does almost all of the name work (fewer than 1.5 "effective"
+            names; see section 4).
+          </p>
+        </div>
+
+        <p>
+          The orange takes up almost the whole chart. For <strong>297 of 303 pages (98%)</strong> names make up most of the
+          nearest-neighbor cosine, and the median is <strong>93%</strong>. Story words contribute a median of 6%,
+          and paperwork barely registers.
+        </p>
+        <div class="note reveal">
+          <span class="tag-l">Why names win</span>
+          <p>
+            TF-IDF rewards a word that is <em>frequent on this page and rare everywhere else</em>, and a character's
+            name fits that exactly. Names are only <strong>29%</strong> of a typical page's words (stopwords
+            removed), but they carry <strong>87%</strong> of the squared length of its TF-IDF vector. So a
+            vector is mostly the character's name, and two vectors line up when they share a name.
+            Across <em>all</em> 45,753 pairs the split is milder (names 54%, story 42%, paperwork 5%). The closer
+            the match, the more of it is names.
+          </p>
+        </div>
+
+        <h2 id="kinds"><span class="sec">04 · A closer look</span>Two kinds of name match</h2>
+        <p>
+          Names aren't all noise, though. Iron Fist's nearest neighbor is Lei Kung, his teacher, through
+          <i>k'un-lun, rand, fist, kung, lei</i>: that is shared story, written in proper nouns. Storm ↔ Human Torch
+          is a pun. To tell them apart, we measured how concentrated the name part of the cosine is. If <i>q<sub>t</sub></i>
+          is each name word's share of the name part, the <strong>effective number of names</strong> is
+          1 / Σ<i>q<sub>t</sub></i><sup>2</sup>: 1 when one name does everything, larger when many names share the
+          work.
+        </p>
+        <div class="split reveal">
+          <div>
+            <div class="split-k">One-name matches · N<sub>eff</sub> &lt; 1.5</div>
+            <div class="split-n"><span id="one-n">91</span> pages · <span id="one-l">45%</span> linked</div>
+            <ul class="mini" id="one-list"></ul>
+          </div>
+          <div>
+            <div class="split-k">Shared-cast matches · N<sub>eff</sub> ≥ 1.5</div>
+            <div class="split-n"><span id="many-n">212</span> pages · <span id="many-l">83%</span> linked</div>
+            <ul class="mini" id="many-list"></ul>
+          </div>
+        </div>
+        <p>
+          The one-name matches are a gallery of homonyms. <strong>Emma Frost ↔ Jack Frost</strong>,
+          <strong>Solomon Kane ↔ Garrison Kane</strong>, <strong>Arabian Knight ↔ Moon Knight</strong>, and
+          <strong>Breeze Barton ↔ Hawkeye</strong> (Clint <i>Barton</i>). Peggy Carter matches Dogpool because Dogpool was played on screen by a dog
+          actress named <i>Peggy</i>. Fewer than half of these pairs are linked. The shared-cast matches are linked 83% of
+          the time, much closer to what you'd expect if the text were just repeating the hyperlinks: if A links to B,
+          A's page contains B's name.
+        </p>
+
+        <h2 id="rewire"><span class="sec">05 · Names handled</span>Take the names away and the lookalikes change</h2>
+        <p>
+          Now drop the name and paperwork words, rescale each page to length 1 over story words only, and find the
+          neighbors again. <strong>76% of pages get a different nearest neighbor.</strong> Storm now matches Jean Grey
+          (<i>mutants, relationship, powerful</i>, and also <i>female</i>, which comes back in section 7) instead of the Human Torch. Morbius matches Blade
+          (<i>vampire, blood, undead, bloodlust</i>), and Garrison Kane matches Yo-Yo Rodriguez, because both have <i>bionic arms</i>.
+        </p>
+
+        <div class="fig bleed reveal" id="fig3">
+          <div class="fig-head">
+            <div class="fig-no">Figure 3 · One page, two representations</div>
+            <h3 class="fig-title">Whom does a character resemble, with names and without?</h3>
+          </div>
+          <div class="fig-body">
+            <div class="controls">
+              <input type="search" id="f3-find" list="char-list" placeholder="Type any of the 303 characters…" aria-label="Choose a character" />
+              <div class="seg" id="f3-picks" role="group" aria-label="Examples"></div>
+            </div>
+            <p class="how">Left: the 8 closest pages by full TF-IDF. Right: the 8 closest by story words only. A line joins a page that appears in both lists. The tag shows how far apart the two pages are in the link network.</p>
+            <div class="chart" id="f3-chart"></div>
+          </div>
+          <p class="fig-cap">
+            Bar length = cosine (both columns on the same scale). Network distance: <b>linked</b> = one page links to
+            the other; <b>2 hops</b> = they share a neighbor; <b>3+</b> or <b>none</b> = far apart or in different
+            components. Click any name to make it the focus.
+          </p>
+        </div>
+
+        <p>
+          To see all the pairs at once, plot each one by both similarities. The diagonal is "the names didn't
+          matter". Pairs far below it are name lookalikes that don't survive, and pairs above it are story twins
+          that the names were hiding.
+        </p>
+
+        <div class="fig bleed reveal" id="fig4">
+          <div class="fig-head">
+            <div class="fig-no">Figure 4 · Every candidate pair, both ways</div>
+            <h3 class="fig-title">Name lookalikes fall below the diagonal; story twins sit above it</h3>
+          </div>
+          <div class="fig-body">
+            <div class="controls">
+              <div class="seg" id="f4-col" role="group" aria-label="Color by">
+                <button data-v="d" class="active">Color: network distance</button>
+                <button data-v="n">Color: name share</button>
+              </div>
+              <input type="search" id="f4-find" list="char-list" placeholder="Highlight a character…" aria-label="Highlight a character" />
+            </div>
+            <p class="how">Each dot is a pair of pages. Across: full TF-IDF cosine. Up: story-only cosine. Hover to identify, click to inspect.</p>
+            <div class="legend" id="f4-legend"></div>
+            <div class="chart" id="f4-chart"></div>
+            <div id="f4-insp" class="insp insp-dock" hidden></div>
+          </div>
+          <p class="fig-cap">
+            <span id="f4-n">—</span> pairs: taken from each page's top 5 neighbors under both representations plus the
+            300 highest story-only pairs, keeping those where either cosine is at least 0.08. Both axes use a square-root scale so the crowded low end spreads out (the diagonal is still y = x). Most of the other 45,753
+            pairs sit near zero in the bottom-left corner. Gold dots are pairs that are <b>3+ hops
+            apart or disconnected</b>.
+          </p>
+        </div>
+
+        <p>
+          The two sides of the diagonal sit differently in the network. Below it, where the names did the work,
+          <strong>49%</strong> of pairs are linked and 18% are 3+ hops apart. Above it, where story words did, only
+          <strong>24%</strong> are linked and <strong>31%</strong> are far apart: that's the gold cloud in the upper left,
+          pairs with different names (low full cosine) but a story cosine of 0.1–0.4.
+        </p>
+
+        <h2 id="read"><span class="sec">06 · Reading the text</span>Are the story twins real?</h2>
+        <p>
+          A high cosine doesn't prove two characters have something in common, so we read the pages. We took the
+          20 most similar <em>unlinked</em> pairs by story-only cosine and checked the concordance lines of their
+          top words (the same view as Figure 1):
+        </p>
+        <div class="verdicts reveal" id="verdict-sum"></div>
+        <div class="table-scroll bleed">
+          <table class="stats twins" id="twins">
+            <thead><tr><th>#</th><th>Pair · click to open</th><th class="num">story cos</th><th>top shared story words</th><th>what we found in the text</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p>
+          Twelve of the twenty share real story: the symbiotes Hybrid, Mania and She-Venom; Morbius and Spitfire, who
+          was drained of blood by her vampire uncle Baron Blood; Blackthorn and Scaredycat, both volunteers for the
+          suicidal Morituri process. The misses fall into three types. One is a name leak: <i>brain</i> in
+          Bird-Brain ↔ Brain Drain is usually lowercase, so the capitalization rule misses it. Four are generic
+          words (<i>great, work, costume</i>). Three are a stock description we'll come back to in section 7.
+        </p>
+        <p>
+          Nineteen of the 20 are exactly <strong>two hops</strong> apart: no link between them, but a neighbor in common
+          (the twentieth is the Bird-Brain name leak). To find
+          story twins that are really far apart we have to look further down the list, and there a pattern shows
+          up. The twins at 3+ hops are <strong>power types the link network never put together</strong>. Turbo
+          sits in a scattered group of people in built suits: Detroit Steel (4 hops away), Guardian, Force,
+          Frog-Man, Stingray. Blue Eagle and Red Raven both fly on artificial <i>wings</i>. Makkari and Speed are
+          speedsters, and Black Knight and Brian Braddock share a cursed <i>sword</i>.
+        </p>
+
+        <div class="fig reveal" id="fig5">
+          <div class="fig-head">
+            <div class="fig-no">Figure 5 · Do the links already know?</div>
+            <h3 class="fig-title">How often a page's lookalike is a page it is linked to</h3>
+          </div>
+          <div class="fig-body">
+            <div class="chart" id="f5-chart"></div>
+          </div>
+          <p class="fig-cap">
+            Share of the 303 nearest-neighbor pairs that are directly linked, under each representation, against
+            the 3.1% of all page pairs that are linked. As a ranking, names-only cosine separates linked from
+            unlinked pairs with AUC 0.93 and story-only with 0.86, so story still says a lot about links, just less.
+          </p>
+        </div>
+
+        <p class="pull">The links record <em>who you know</em>. The story words record <em>what you can do</em>.</p>
+        <p>
+          Wikipedia editors link a page to teammates, relatives, mentors and enemies. TF-IDF on raw text mostly finds
+          those same people again, by their names. Story words find characters with the same <em>kind</em> of
+          existence: the same powers, origins and technology. Those pages often aren't linked, because the
+          characters rarely appear in each other's stories.
+        </p>
+
+        <h2 id="surprise"><span class="sec">07 · What surprised us</span>The women find each other</h2>
+        <p>
+          Three of the misses in section 6 had the same cause: the sentence "described as one of Marvel's most
+          notable and powerful <em>female</em> heroes", which appears word for word on She-Hulk's and Spider-Woman's
+          pages, with a close variant on Jean Grey's. That made us check gender, which we had not planned to. We labelled each page by its pronouns
+          (she/her vs. he/his, a 2:1 majority) and got 57 women, 227 men and 19 unclear. Pronouns are stopwords, so
+          they never enter the vectors.
+        </p>
+
+        <div class="fig reveal" id="fig6">
+          <div class="fig-head">
+            <div class="fig-no">Figure 6 · Same-gender lookalikes</div>
+            <h3 class="fig-title">How often a woman's lookalike is another woman</h3>
+          </div>
+          <div class="fig-body">
+            <div class="chart" id="f6-rate"></div>
+            <div class="sub-k">What the women's pages share: share of pages that mention…</div>
+            <div class="legend" id="f6-legend"></div>
+            <div class="chart" id="f6-words"></div>
+          </div>
+          <p class="fig-cap">
+            Top: for the 57 women, the share whose nearest neighbor is also a woman. Bottom: share of women's and
+            men's pages whose raw text matches each pattern at least once (e.g. <i>telekine*</i>). Sorted by the gap
+            between them.
+          </p>
+        </div>
+        <p>
+          With full TF-IDF, a woman's lookalike is a woman 28% of the time, not much above the 19% you'd get by
+          chance. With story words it's <strong>53%</strong>. That isn't just the word <i>female</i>: removing 30
+          explicitly gendered words (<i>female, woman, girlfriend, husband, mother</i>…) still leaves 51%. The words
+          that carry the women-to-women matches are <i>mutants, telepathy, telekinetic, psychic</i>. Marvel gives
+          its women mind powers (telekinesis on 16% of women's pages vs. 5% of men's) and luck or probability
+          powers (12% vs. 2%). Armor and guns lean male. There is also how the pages are written:
+          <i>relationship</i> appears on <strong>49% of women's pages and 27% of men's</strong>. Some of this is in the
+          comics, and some is in how Wikipedia writes about women characters, and this method can't separate the
+          two.
+        </p>
+
+        <h2 id="robust"><span class="sec">08 · Is it robust?</span>Changing the rules</h2>
+        <p>Both class rules and the TF weighting are choices, so we re-ran everything with each one changed:</p>
+        <div class="table-scroll">
+          <table class="stats" id="robust-table">
+            <thead><tr><th>variant</th><th class="num">name share of lookalike (median)</th><th class="num">pages matched mostly on names</th><th class="num">lookalike changes without names</th><th class="num">story lookalike linked</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p>
+          The class rules barely matter: thresholds of 30% or 70%, or adding every word of the 303 page titles to the
+          names, all give 91–94%. <strong>The TF weighting matters a lot.</strong> Sublinear TF (1 + log count) caps how
+          much a page's 200th mention of its own name counts, and the name share falls to 58%. Even so, names are still
+          most of the match for 63% of pages. So "names dominate" holds for both weightings. "Names are 93% of it"
+          only holds for the standard one.
+        </p>
+
+        <h2 id="limits"><span class="sec">09 · Limitations</span>What this can't tell you</h2>
+        <ul>
+          <li><strong>A name is a spelling, not a meaning.</strong> The capitalization rule calls <i>Avengers</i>,
+            <i>Claremont</i> and <i>Wakanda</i> names, and they carry real information. It also misses names written as
+            ordinary words (<i>brain, steel, wolf</i> when lowercase). "Names" here means proper nouns, not "noise".</li>
+          <li><strong>Story words still include style.</strong> The "powerful female heroes" phrase passes both filters,
+            because it is neither capitalized nor confined to the real-world sections. A third rule for stock phrases
+            (week 5's shared 8-grams) would catch it, and we didn't add one.</li>
+          <li><strong>One representation, decomposed.</strong> We split TF-IDF itself rather than comparing it with
+            topic models or Word2Vec. The decomposition is exact <em>because</em> the cosine is linear in
+            words, and a dense embedding can't be split this way.</li>
+          <li><strong>Pronoun gender is crude.</strong> It mislabels team pages and characters with several
+            incarnations, and drops 19 pages. The section 7 numbers are a pattern worth checking, not a measurement.</li>
+        </ul>
+
+        <p class="chart-note">
+          Reproduce: <code>cd analysis &amp;&amp; python week6_names.py</code> (about 20 s; writes
+          <code>assets/week6_names.json</code> and <code>assets/week6_conc.json</code>). TF-IDF: scikit-learn defaults
+          (smooth idf, l2 norm), English stopwords, <code>min_df=2</code>, <code>max_df=0.5</code>, prose before the
+          References heading. Data: the course's frozen Marvel snapshot (<code>marvel_pages.zip</code> + week-1 network, 2026-08-26).
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <datalist id="char-list"></datalist>
+
+  <footer>
+    <div class="inner">
+      <div>
+        <div class="fm">The Marvel Web</div>
+        Built for 02805 Social Graphs &amp; Interactions, DTU.<br />Data: Wikipedia <code>Category:Marvel Comics superheroes</code>, frozen snapshot 2026-08-26.
+      </div>
+      <div class="links">
+        <a href="../index.html">All posts</a>
+        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="tip" id="tip"></div>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="../assets/site.js"></script>
+  <script src="../assets/week6.js"></script>
+</body>
+</html>

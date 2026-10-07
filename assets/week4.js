@@ -1,18 +1,18 @@
 (function () {
   // Tradition colours, fixed order (dark-surface steps of the validated 8-slot palette); "other" is neutral.
-  const COLORS = ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181", "#008300", "#9085e9", "#e66767", "#6b7385"];
+  const COLORS = ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181", "#008300", "#9085e9", "#e66767", "#6b6a64"];
   const colorOf = (t) => COLORS[t < 0 ? 8 : t];
   const REN = "15th–16th";
   const PLOT_OPTS = { displayModeBar: false, responsive: true };
   const baseLayout = {
     paper_bgcolor: "rgba(0,0,0,0)",
     plot_bgcolor: "rgba(0,0,0,0)",
-    font: { color: "#e8ecf4", family: "Inter, sans-serif", size: 12 },
+    font: { color: "#ecebe6", family: "Inter, -apple-system, sans-serif", size: 12 },
     margin: { l: 60, r: 20, t: 10, b: 50 },
     showlegend: false,
-    hoverlabel: { bgcolor: "#05070c", bordercolor: "#6c63ff", font: { color: "#e8ecf4" } },
-    xaxis: { gridcolor: "#232b3d", zerolinecolor: "#232b3d", linecolor: "#232b3d" },
-    yaxis: { gridcolor: "#232b3d", zerolinecolor: "#232b3d", linecolor: "#232b3d" },
+    hoverlabel: { bgcolor: "#08080a", bordercolor: "#3987e5", font: { color: "#ecebe6" } },
+    xaxis: { gridcolor: "#24242a", zerolinecolor: "#24242a", linecolor: "#24242a" },
+    yaxis: { gridcolor: "#24242a", zerolinecolor: "#24242a", linecolor: "#24242a" },
   };
   const fmt = (x, d = 2) => Number(x).toFixed(d);
 
@@ -72,7 +72,7 @@
         x,
         y: d.eras.map((e) => (share ? e.counts[t] / e.n : e.counts[t])),
         customdata: d.eras.map((e) => [e.counts[t], e.n, (100 * e.counts[t]) / e.n]),
-        marker: { color: COLORS[t], line: { color: "#131826", width: 1.5 } },
+        marker: { color: COLORS[t], line: { color: "#131316", width: 1.5 } },
         hovertemplate: `<b>${label}</b><br>%{x}: %{customdata[0]} of %{customdata[1]} (%{customdata[2]:.0f}%)<extra></extra>`,
       }));
     }
@@ -87,7 +87,7 @@
           : { title: "philosophers" }),
         annotations: share ? [{
           x: REN, y: 1.0, yanchor: "bottom", showarrow: false,
-          text: "largest tradition: 28%", font: { color: "#ffd23f", size: 11 },
+          text: "largest tradition: 28%", font: { color: "#e0b85a", size: 11 },
         }] : [],
       });
       Plotly.react("era-plot", traces(share), layout, PLOT_OPTS);
@@ -122,9 +122,9 @@
         boxpoints: "all",
         jitter: 0.6,
         pointpos: 0,
-        marker: { size: 4, opacity: 0.55, color: hot ? "#ffd23f" : "#9aa5b8" },
-        line: { color: hot ? "#ffd23f" : "#7c8bab", width: 1.5 },
-        fillcolor: hot ? "rgba(255,210,63,0.10)" : "rgba(154,165,184,0.08)",
+        marker: { size: 4, opacity: 0.55, color: hot ? "#e0b85a" : "#a3a29b" },
+        line: { color: hot ? "#e0b85a" : "#8a8982", width: 1.5 },
+        fillcolor: hot ? "rgba(224,184,90,0.10)" : "rgba(154,165,184,0.08)",
       };
     });
     const layout = Object.assign({}, baseLayout, {
@@ -138,14 +138,14 @@
   function tugChart(d) {
     const picks = d.nodes.filter((n) => n.deg >= 8).sort((a, b) => a.loy - b.loy).slice(0, 14);
     ["Aristotle", "Baruch Spinoza"].forEach((nm) => picks.push(d.nodes.find((n) => n.name === nm)));
-    const names = picks.map((n) => `${n.name.replace(" (philosopher)", "")} <span style="color:#9aa5b8">(${n.era})</span>`);
+    const names = picks.map((n) => `${n.name.replace(" (philosopher)", "")} <span style="color:#a3a29b">(${n.era})</span>`);
     const traces = d.labels.map((label, t) => ({
       type: "bar",
       orientation: "h",
       name: label,
       y: names,
       x: picks.map((n) => n.share[t]),
-      marker: { color: COLORS[t], line: { color: "#131826", width: 1.5 } },
+      marker: { color: COLORS[t], line: { color: "#131316", width: 1.5 } },
       hovertemplate: `%{y}<br><b>${label}</b>: %{x:.0%} of runs<extra></extra>`,
     }));
     const layout = Object.assign({}, baseLayout, {
@@ -174,8 +174,8 @@
       text: rows.map((r) => r[1]),
       textposition: "outside",
       cliponaxis: false,
-      textfont: { color: "#9aa5b8" },
-      marker: { color: "#6c63ff" },
+      textfont: { color: "#a3a29b" },
+      marker: { color: "#3987e5" },
       hovertemplate: "Galileo shares a community with %{y}<br>in %{x} of 200 runs<extra></extra>",
     }], layout, PLOT_OPTS);
   }
@@ -198,7 +198,7 @@
     const nodes = d.nodes.map((n) => Object.assign({}, n));
     const byId = new Map(nodes.map((n) => [n.id, n]));
     const radius = (n) => 2.2 + Math.sqrt(n.str) * 0.38;
-    const loyColor = d3.scaleSequential((t) => d3.interpolateRgb("#ffd23f", "#2c3650")(t)).domain([0, 1]);
+    const loyColor = d3.scaleSequential((t) => d3.interpolateRgb("#e0b85a", "#2e2e34")(t)).domain([0, 1]);
     const topStrength = new Set(nodes.slice().sort((a, b) => b.str - a.str).slice(0, 10).map((n) => n.id));
 
     const state = { alpha: 0.2, mode: "u", ren: false, focus: null };
@@ -240,13 +240,13 @@
 
       linkSel = linkLayer.selectAll("line").data(visLinks, (l) => `${l.source.id ?? l.source}-${l.target.id ?? l.target}`)
         .join("line")
-        .attr("stroke", "#3a4a63")
+        .attr("stroke", "#3a3a40")
         .attr("stroke-width", (l) => 0.4 + Math.min(l.w, 12) * 0.12);
 
       nodeSel = nodeLayer.selectAll("circle").data(visNodes, (n) => n.id)
         .join("circle")
         .attr("r", radius)
-        .attr("stroke", "#05070c")
+        .attr("stroke", "#08080a")
         .attr("stroke-width", 0.6)
         .style("cursor", "pointer")
         .on("mouseenter", (e, n) => showTip(e, n))
@@ -262,8 +262,8 @@
         .join("text")
         .text((n) => n.name)
         .attr("font-size", 10)
-        .attr("fill", "#e8ecf4")
-        .attr("stroke", "#05070c")
+        .attr("fill", "#ecebe6")
+        .attr("stroke", "#08080a")
         .attr("stroke-width", 3)
         .attr("paint-order", "stroke")
         .attr("text-anchor", "middle");
@@ -308,7 +308,7 @@
       const dim = (n) => (state.ren && n.era !== REN) || (nb && n.id !== f && !nb.has(n.id));
       nodeSel.attr("fill", colorFor)
         .attr("opacity", (n) => (dim(n) ? 0.12 : 1))
-        .attr("stroke", (n) => (n.id === f ? "#ffffff" : "#05070c"))
+        .attr("stroke", (n) => (n.id === f ? "#ffffff" : "#08080a"))
         .attr("stroke-width", (n) => (n.id === f ? 2 : 0.6));
       linkSel.attr("stroke-opacity", (l) => {
         const s = l.source.id ?? l.source, t = l.target.id ?? l.target;
