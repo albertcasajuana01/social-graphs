@@ -5,24 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Week 6 — Names or story? | The Marvel Web</title>
   <meta name="description" content="A TF-IDF cosine is a sum over words, so every Marvel lookalike can be split exactly into shared names, shared paperwork and shared story. For 98% of pages the lookalike is mostly a name. Remove the names and the lookalikes rewire into families of powers the link network never connected." />
-  <meta name="theme-color" content="#0c0c0e" />
+  <meta name="theme-color" content="#fbfaf7" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="../style.css" />
-  <link rel="stylesheet" href="../assets/week6.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230c0c0e%22/><g stroke=%22%23e0b85a%22 stroke-width=%221.6%22 fill=%22none%22><path d=%22M7 22L16 8l9 14M7 22h18M16 8v14%22/></g><g fill=%22%23ecebe6%22><circle cx=%2216%22 cy=%228%22 r=%222.4%22/><circle cx=%227%22 cy=%2222%22 r=%222.4%22/><circle cx=%2225%22 cy=%2222%22 r=%222.4%22/></g></svg>" />
+  <link rel="stylesheet" href="../style.css?v=8" />
+  <link rel="stylesheet" href="../assets/week6.css?v=8" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%225%22 fill=%22%23990000%22/><text x=%2216%22 y=%2223%22 font-family=%22Georgia,serif%22 font-size=%2219%22 font-weight=%22700%22 fill=%22white%22 text-anchor=%22middle%22>M</text></svg>" />
 </head>
 <body>
-  <header class="topbar">
+  <header class="site-header">
     <div class="inner">
-      <a class="wordmark" href="../index.html">
-        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g stroke="#e0b85a" stroke-width="1.4" fill="none"><path d="M7 22L16 8l9 14M7 22h18M16 8v14"/></g><g fill="#ecebe6"><circle cx="16" cy="8" r="2.4"/><circle cx="7" cy="22" r="2.4"/><circle cx="25" cy="22" r="2.4"/></g></svg>
-        The Marvel <em>Web</em>
+      <a class="brand" href="../index.html">
+        <span class="brand-name">The Marvel Web</span>
+        <span class="brand-sub">Social Graphs &amp; Interactions · DTU 02805</span>
       </a>
-      <nav>
-        <a href="../index.html">Posts</a>
-        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener" class="hide-sm">Course ↗</a>
-        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">Source ↗</a>
+      <nav class="main-nav" aria-label="Main">
+        <a href="../index.html">Home</a>
+        <details class="menu"><summary>Weekly posts</summary><div class="menu-list" data-posts></div></details>
+        <a href="../index.html#about" class="hide-sm">About</a>
+        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">GitHub</a>
       </nav>
     </div>
     <div class="progress"></div>
@@ -132,7 +133,7 @@
           </div>
           <p class="fig-cap">
             Bar = the cosine between a page and its single most similar page, split into the three word classes
-            (with <b>Share of cosine</b>, each bar is scaled to 100%). The dashed line is 50%. A gold tick under a bar
+            (with <b>Share of cosine</b>, each bar is scaled to 100%). The dashed line is 50%. A red tick under a bar
             means a <b>one-name match</b>: a single name does almost all of the name work (fewer than 1.5 "effective"
             names; see section 4).
           </p>
@@ -240,7 +241,7 @@
           <p class="fig-cap">
             <span id="f4-n">—</span> pairs: taken from each page's top 5 neighbors under both representations plus the
             300 highest story-only pairs, keeping those where either cosine is at least 0.08. Both axes use a square-root scale so the crowded low end spreads out (the diagonal is still y = x). Most of the other 45,753
-            pairs sit near zero in the bottom-left corner. Gold dots are pairs that are <b>3+ hops
+            pairs sit near zero in the bottom-left corner. Red dots are pairs that are <b>3+ hops
             apart or disconnected</b>.
           </p>
         </div>
@@ -248,7 +249,7 @@
         <p>
           The two sides of the diagonal sit differently in the network. Below it, where the names did the work,
           <strong>49%</strong> of pairs are linked and 18% are 3+ hops apart. Above it, where story words did, only
-          <strong>24%</strong> are linked and <strong>31%</strong> are far apart: that's the gold cloud in the upper left,
+          <strong>24%</strong> are linked and <strong>31%</strong> are far apart: that's the red cloud in the upper left,
           pairs with different names (low full cosine) but a story cosine of 0.1–0.4.
         </p>
 
@@ -401,7 +402,7 @@
 
   <div class="tip" id="tip"></div>
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
-  <script src="../assets/site.js"></script>
-  <script src="../assets/week6.js"></script>
+  <script src="../assets/site.js?v=8"></script>
+  <script src="../assets/week6.js?v=8"></script>
 </body>
 </html>

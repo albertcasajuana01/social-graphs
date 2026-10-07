@@ -4,11 +4,11 @@
   const baseLayout = {
     paper_bgcolor: "rgba(0,0,0,0)",
     plot_bgcolor: "rgba(0,0,0,0)",
-    font: { color: "#ecebe6", family: "Inter, -apple-system, sans-serif" },
+    font: { color: "#1c1b19", family: "Inter, -apple-system, sans-serif" },
     margin: { l: 60, r: 20, t: 20, b: 55 },
     legend: { orientation: "h", y: -0.25 },
-    xaxis: { gridcolor: "#24242a", zerolinecolor: "#24242a" },
-    yaxis: { gridcolor: "#24242a", zerolinecolor: "#24242a" },
+    xaxis: { gridcolor: "#e8e5de", zerolinecolor: "#e8e5de" },
+    yaxis: { gridcolor: "#e8e5de", zerolinecolor: "#e8e5de" },
   };
 
   const PLOT_OPTS = { displayModeBar: false, responsive: true };
@@ -35,8 +35,8 @@
         mode: "lines+markers",
         type: "scatter",
         name: "real network",
-        line: { color: "#e0b85a", width: 2 },
-        marker: { size: 6, color: "#e0b85a" },
+        line: { color: "#990000", width: 2 },
+        marker: { size: 6, color: "#990000" },
       },
       {
         x: data.random.map((point) => point.x),
@@ -44,7 +44,7 @@
         mode: "lines",
         type: "scatter",
         name: "G(n,m) random graph",
-        line: { color: "#199e70", width: 2, dash: "dash" },
+        line: { color: "#1baf7a", width: 2, dash: "dash" },
       },
       {
         x: data.ba.map((point) => point.x),
@@ -52,7 +52,7 @@
         mode: "lines",
         type: "scatter",
         name: "Barabási–Albert (m = 5)",
-        line: { color: "#e8765a", width: 2, dash: "dot" },
+        line: { color: "#eb6834", width: 2, dash: "dot" },
       },
     ];
 
@@ -63,7 +63,7 @@
         mode: "lines",
         type: "scatter",
         name: "power-law fit",
-        line: { color: "#8ecae6", width: 2 },
+        line: { color: "#4a3aa7", width: 2 },
       });
     }
 

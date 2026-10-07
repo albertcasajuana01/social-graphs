@@ -5,118 +5,143 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Marvel Web</title>
   <meta name="description" content="A group's running log of the Social Graphs & Interactions course (02805), mining the structure and text of the Marvel Comics superhero network." />
-  <meta name="theme-color" content="#0c0c0e" />
+  <meta name="theme-color" content="#fbfaf7" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230c0c0e%22/><g stroke=%22%23e0b85a%22 stroke-width=%221.6%22 fill=%22none%22><path d=%22M7 22L16 8l9 14M7 22h18M16 8v14%22/></g><g fill=%22%23ecebe6%22><circle cx=%2216%22 cy=%228%22 r=%222.4%22/><circle cx=%227%22 cy=%2222%22 r=%222.4%22/><circle cx=%2225%22 cy=%2222%22 r=%222.4%22/></g></svg>" />
+  <link rel="stylesheet" href="style.css?v=8" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%225%22 fill=%22%23990000%22/><text x=%2216%22 y=%2223%22 font-family=%22Georgia,serif%22 font-size=%2219%22 font-weight=%22700%22 fill=%22white%22 text-anchor=%22middle%22>M</text></svg>" />
 </head>
 <body>
-  <header class="topbar">
+  <header class="site-header">
     <div class="inner">
-      <a class="wordmark" href="index.html">
-        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g stroke="#e0b85a" stroke-width="1.4" fill="none"><path d="M7 22L16 8l9 14M7 22h18M16 8v14"/></g><g fill="#ecebe6"><circle cx="16" cy="8" r="2.4"/><circle cx="7" cy="22" r="2.4"/><circle cx="25" cy="22" r="2.4"/></g></svg>
-        The Marvel <em>Web</em>
+      <a class="brand" href="index.html">
+        <span class="brand-name">The Marvel Web</span>
+        <span class="brand-sub">Social Graphs &amp; Interactions · DTU 02805</span>
       </a>
-      <nav>
-        <a href="index.html" class="active">Posts</a>
-        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener" class="hide-sm">Course ↗</a>
-        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">Source ↗</a>
+      <nav class="main-nav" aria-label="Main">
+        <a href="index.html" class="active">Home</a>
+        <details class="menu"><summary>Weekly posts</summary><div class="menu-list" data-posts></div></details>
+        <a href="#about" class="hide-sm">About</a>
+        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">GitHub</a>
       </nav>
     </div>
   </header>
 
-  <section class="masthead">
-    <canvas id="mast-net" data-src="assets/network.json" aria-hidden="true"></canvas>
+  <section class="intro">
     <div class="inner">
-      <div class="eyebrow">02805 Social Graphs &amp; Interactions · DTU · 2026</div>
-      <h1>The Marvel <em>Web</em></h1>
-      <p class="lede">A weekly field journal on one network. 303 Marvel superheroes, the Wikipedia links between them, and the 730,000 words written about them. Every figure is live: drag it, search it, click through to the text underneath.</p>
-      <div class="crew">
-        <a class="tag" href="https://github.com/albertcasajuana01" target="_blank" rel="noopener">Albert Casajuana</a>
-        <a class="tag" href="https://github.com/viktorguijarro" target="_blank" rel="noopener">@viktorguijarro</a>
-        <a class="tag" href="https://github.com/mariona2ca" target="_blank" rel="noopener">@mariona2ca</a>
+      <div>
+        <div class="eyebrow">Course blog · 02805 Social Graphs &amp; Interactions</div>
+        <h1>The Marvel Web</h1>
+        <p class="lede">Each week we take one idea from the course and test it on a single network: 303 Marvel superheroes, the Wikipedia links between them, and the 730,000 words written about them.</p>
+        <div class="crew">
+          <span>By</span>
+          <a href="https://github.com/albertcasajuana01" target="_blank" rel="noopener">Albert Casajuana</a>
+          <a href="https://github.com/viktorguijarro" target="_blank" rel="noopener">@viktorguijarro</a>
+          <a href="https://github.com/mariona2ca" target="_blank" rel="noopener">@mariona2ca</a>
+        </div>
       </div>
-      <div class="mast-stats">
-        <div><b>303</b>characters</div>
-        <div><b>1,784</b>directed links</div>
-        <div><b>730k</b>words of page text</div>
-        <div><b>6</b>posts so far</div>
-      </div>
+      <aside class="facts" aria-label="The data">
+        <h2>The data</h2>
+        <dl>
+          <dt>303</dt><dd>characters in Wikipedia's <i>Marvel Comics superheroes</i> category</dd>
+          <dt>1,784</dt><dd>links between their pages</dd>
+          <dt>730k</dt><dd>words of page text</dd>
+        </dl>
+        <p>Frozen course snapshot of 26 August 2026. Week 4 uses the course's philosopher network instead.</p>
+      </aside>
     </div>
   </section>
 
   <main>
     <div class="wrap wide">
-      <div class="index-head"><h2>Posts</h2><span>Newest first</span></div>
+      <div class="latest">
+        <div>
+          <p class="kicker">Latest · Week 6 · From counts to meaning</p>
+          <h2><a href="posts/week6-names.html">Names or story? Splitting every Marvel lookalike into what it shares</a></h2>
+          <p>For 98% of pages, the page TF-IDF finds most similar is matched mainly on names: Storm matches the Human Torch on the single word <i>storm</i>. Remove the names and three quarters of the lookalikes change, into groups of characters with the same powers that the link network never connects.</p>
+        </div>
+        <a class="btn" href="posts/week6-names.html">Read the post</a>
+      </div>
+
+      <div class="index-head" id="posts"><h2>All posts</h2><span>Newest first</span></div>
       <ul class="post-list">
-        <li class="featured reveal">
+        <li>
           <a href="posts/week6-names.html">
-            <div class="no">06</div>
+            <div class="no">Week 6<small>From counts to meaning</small></div>
             <div>
-              <div class="meta">Week 6 · From counts to meaning <span class="new">New</span></div>
-              <h2>Names or story? Splitting every Marvel lookalike into what it shares</h2>
-              <p>A cosine similarity is a sum over words, so we can say exactly how much of every match comes from shared names. For 98% of pages the TF-IDF lookalike is mostly a name: Storm matches the Human Torch on one word. Take the names away and three quarters of the lookalikes change. The new ones are symbiotes, vampires and powered armor, often between pages Wikipedia never linked.</p>
+              <h2>Names or story? Splitting every Marvel lookalike into what it shares<span class="new">NEW</span></h2>
+              <p>A cosine similarity is a sum over words, so we can say exactly how much of each match comes from shared names, from real-world "paperwork" vocabulary, and from story. Then we rebuild the lookalikes from story words only and compare both versions with the link network.</p>
+              <span class="more">Read the post →</span>
             </div>
-            <div class="arrow">→</div>
           </a>
         </li>
-        <li class="reveal">
+        <li>
           <a href="posts/week5-copying.html">
-            <div class="no">05</div>
+            <div class="no">Week 5<small>From language to numbers</small></div>
             <div>
-              <div class="meta">Week 5 · From language to numbers</div>
               <h2>Wikipedia copies the paperwork, not the plot</h2>
-              <p>The Marvel pages get their text. We hunt for passages that appear word for word on two pages: they are publication histories, creator anecdotes and reading lists, almost never the fictional biographies. Every copied paragraph sits between pages that are already linked.</p>
+              <p>We look for passages that appear word for word on two pages. They are publication histories, creator anecdotes and reading lists, almost never the fictional biographies, and every copied paragraph sits between pages that already link to each other.</p>
+              <span class="more">Read the post →</span>
             </div>
-            <div class="arrow">→</div>
           </a>
         </li>
-        <li class="reveal">
+        <li>
           <a href="posts/week4-renaissance.html">
-            <div class="no">04</div>
+            <div class="no">Week 4<small>Communities &amp; backbones</small></div>
             <div>
-              <div class="meta">Week 4 · Communities, consensus, weights &amp; backbones</div>
               <h2>Where did the Renaissance go? 200 Louvain runs and the philosophers no tradition will keep</h2>
-              <p>We switch to the philosopher network and run Louvain 200 times. Almost everyone keeps their tradition, except Galileo, Kepler, Bruno and the other Renaissance naturalists: a tight bloc that a different tradition absorbs each run.</p>
+              <p>On the philosopher network, Louvain gives almost everyone the same tradition across 200 runs, except Galileo, Kepler, Bruno and the other Renaissance naturalists: a tight bloc that a different tradition absorbs each time.</p>
+              <span class="more">Read the post →</span>
             </div>
-            <div class="arrow">→</div>
           </a>
         </li>
-        <li class="reveal">
+        <li>
           <a href="posts/week3-robustness.html">
-            <div class="no">03</div>
+            <div class="no">Week 3<small>Paths &amp; robustness</small></div>
             <div>
-              <div class="meta">Week 3 · Paths, centrality &amp; robustness</div>
               <h2>Attack vs. random failure: how many heroes does it take to break the Marvel web?</h2>
-              <p>Removing characters by betweenness, by degree, and at random, and watching the giant component shrink. Plus which single character fragments the network the most, and whether betweenness would pick the same one.</p>
+              <p>We remove characters by betweenness, by degree and at random, and watch the giant component shrink. We also find the single character whose removal fragments the network most, and check whether betweenness would pick the same one.</p>
+              <span class="more">Read the post →</span>
             </div>
-            <div class="arrow">→</div>
           </a>
         </li>
-        <li class="reveal">
+        <li>
           <a href="posts/week2-models.html">
-            <div class="no">02</div>
+            <div class="no">Week 2<small>Random models</small></div>
             <div>
-              <div class="meta">Week 2 · Random models &amp; tail shape</div>
               <h2>Degree distribution vs. random models: heavy-tailed, BA-shaped, and not a clean power law</h2>
-              <p>Comparing the real Marvel graph against a matched random graph and a tuned Barabási–Albert model, then testing whether a strict power law is statistically supported.</p>
+              <p>We compare the real Marvel graph with a matched random graph and a tuned Barabási–Albert model, then test whether a strict power law is statistically supported.</p>
+              <span class="more">Read the post →</span>
             </div>
-            <div class="arrow">→</div>
           </a>
         </li>
-        <li class="reveal">
+        <li>
           <a href="posts/week1-bootstrap.html">
-            <div class="no">01</div>
+            <div class="no">Week 1<small>Bootstrap</small></div>
             <div>
-              <div class="meta">Week 1 · Bootstrap edition</div>
               <h2>Meet the network: 303 heroes, 17 loners, and one island of Morituri</h2>
-              <p>Loading the frozen week-1 snapshot, reconciling directed and undirected edge counts, mapping who's most linked-to and who links out the most, and finding a nine-node clique that Wikipedia forgot to connect to the rest of the Marvel universe.</p>
+              <p>We load the frozen snapshot, reconcile directed and undirected edge counts, and map who is linked to most and who links out most. We also find a nine-node clique that Wikipedia never connected to the rest of the Marvel universe.</p>
+              <span class="more">Read the post →</span>
             </div>
-            <div class="arrow">→</div>
           </a>
         </li>
       </ul>
+
+      <section class="about" id="about">
+        <div>
+          <h2>About this site</h2>
+          <p>This is the group blog for DTU's course 02805 Social Graphs &amp; Interactions. Each week's post asks one question about the Marvel network and answers it with that week's methods. The analysis code for every post is in the <a href="https://github.com/albertcasajuana01/social-graphs">GitHub repository</a>, and the README explains how to reproduce each one.</p>
+        </div>
+        <div>
+          <h2>How to read the figures</h2>
+          <ul>
+            <li>Hover over any point, bar or line to see its exact values.</li>
+            <li>Click a pair or a character to open the details below the figure, including the original Wikipedia sentences.</li>
+            <li>Use the search boxes to find a character by name.</li>
+            <li>Every post ends with its limitations and a reproduce command.</li>
+          </ul>
+        </div>
+      </section>
     </div>
   </main>
 
@@ -124,16 +149,15 @@
     <div class="inner">
       <div>
         <div class="fm">The Marvel Web</div>
-        Built for 02805 Social Graphs &amp; Interactions, DTU.<br />Data: Wikipedia <code>Category:Marvel Comics superheroes</code>, frozen course snapshot (2026-08-26).
+        Built for 02805 Social Graphs &amp; Interactions, DTU.<br />Data: Wikipedia <i>Category:Marvel Comics superheroes</i>, frozen course snapshot (2026-08-26).
       </div>
       <div class="links">
-        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener">Course</a>
+        <a href="https://sunelehmann.com/socialgraphs2026-web/" target="_blank" rel="noopener">Course page</a>
         <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
-  <script src="assets/site.js"></script>
+  <script src="assets/site.js?v=8"></script>
 </body>
 </html>

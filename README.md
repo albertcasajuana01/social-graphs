@@ -22,9 +22,9 @@ charts, both fed by JSON exported from the analysis notebook.
 ```
 index.html                 — post listing
 posts/                      — one HTML page per week's post
-style.css                    — shared site styling (editorial dark theme: Instrument Serif + Inter, one gold accent)
+style.css                    — shared site styling (classic light theme: Source Serif 4 + Inter, DTU red accent)
 assets/
-  site.js                     — shared chrome: sticky bar, reading progress, contents rail, prev/next, masthead network
+  site.js                     — shared navigation: Weekly posts menu, breadcrumbs, prev/next, reading progress, contents rail
   week6.js, week6.css         — week-6 figures (pair inspector, lookalike wall, rewiring, scatter, gender)
   network.js, network.json    — interactive D3 force-directed network (posts/week1)
   charts.js, degree_data.json — interactive Plotly degree-distribution charts

@@ -1,8 +1,8 @@
 // Week 6 — Names or story? All figures read ../assets/week6_names.json (written by analysis/week6_names.py);
 // concordance lines come from week6_conc.json, fetched the first time someone opens a pair.
 (function () {
-  const C = { name: "#d95926", paper: "#6b6a64", story: "#3987e5", d1: "#55534c", d2: "#9a8350", d3: "#f0c96a",
-              women: "#199e70", men: "#8a8982", ink: "#ecebe6", dim: "#a3a29b", muted: "#7a7973", line: "#24242a", surf: "#131316" };
+  const C = { name: "#eb6834", paper: "#9a978f", story: "#2a78d6", d1: "#cfccc4", d2: "#8a877f", d3: "#990000",
+              women: "#1baf7a", men: "#9a978f", ink: "#1c1b19", dim: "#4f4d48", muted: "#7b7871", line: "#e5e2db", surf: "#ffffff" };
   const CLS = [{ k: "name", label: "Names", c: C.name }, { k: "paper", label: "Paperwork", c: C.paper }, { k: "story", label: "Story", c: C.story }];
   const fmt2 = d3.format(".2f"), fmt3 = d3.format(".3f"), pct = d3.format(".0%");
   const tip = document.getElementById("tip");
@@ -337,7 +337,7 @@
         const w = mb.width;
         svg.selectAll("path").data(links).join("path")
           .attr("d", ([a, b]) => `M0,${a}C${w / 2},${a} ${w / 2},${b} ${w},${b}`)
-          .attr("fill", "none").attr("stroke", C.ink).attr("stroke-opacity", 0.35).attr("stroke-width", 1.2);
+          .attr("fill", "none").attr("stroke", C.muted).attr("stroke-opacity", 0.6).attr("stroke-width", 1.2);
       });
       el.querySelectorAll(".rw-row").forEach((n) => n.addEventListener("click", () => { input.value = ""; focus(+n.dataset.j); }));
     }
@@ -354,7 +354,7 @@
     const order = (r) => (r.d === 1 ? 0 : r.d === 2 ? 1 : 2);
     rows.sort((a, b) => order(a) - order(b));
     let col = "d", sel = null, hov = null;
-    const ramp = d3.scaleLinear().domain([0, 1]).range(["#3b3a36", C.name]).interpolate(d3.interpolateLab);
+    const ramp = d3.scaleLinear().domain([0, 1]).range(["#e3dfd7", C.name]).interpolate(d3.interpolateLab);
     const setLegend = () => legend(document.getElementById("f4-legend"), col === "d"
       ? [{ c: C.d1, label: "linked", dot: true }, { c: C.d2, label: "2 hops", dot: true }, { c: C.d3, label: "3+ hops or not connected", dot: true }]
       : [{ c: ramp(0.1), label: "story-heavy", dot: true }, { c: ramp(0.5), label: "half names", dot: true }, { c: ramp(0.95), label: "name-heavy", dot: true }]);
@@ -467,7 +467,7 @@
     "Black Cat|She-Hulk": ["phrase", "female, relationship, dating: how women characters get described."],
     "Gwenpool|Spider-Woman": ["generic", "fan, make, real: commentary vocabulary."],
   };
-  const VK = { real: ["Real shared story", C.story], phrase: ["Stock description", C.name], generic: ["Generic words", C.paper], leak: ["Name leak", "#9a8350"] };
+  const VK = { real: ["Real shared story", C.story], phrase: ["Stock description", C.name], generic: ["Generic words", C.paper], leak: ["Name leak", "#4a3aa7"] };
   function twins() {
     const top = D.pairs.filter((p) => p.d !== 1).sort((a, b) => b.story - a.story).slice(0, 20);
     const vk = (p) => VERDICT[[LABEL[p.a], LABEL[p.b]].sort().join("|")];

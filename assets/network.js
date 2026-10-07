@@ -33,7 +33,7 @@
     .attr("orient", "auto-start-reverse")
     .append("path")
     .attr("d", "M0,-5L10,0L0,5")
-    .attr("fill", "#8a8982");
+    .attr("fill", "#9a978f");
 
   const zoomBehavior = d3.zoom().scaleExtent([0.15, 6]).on("zoom", (event) => {
     zoomLayer.attr("transform", event.transform);
@@ -58,7 +58,7 @@
         `giant component ${data.meta.giant} · Morituri island ${data.meta.morituri} · ${data.meta.isolates} isolates`;
 
       const maxIn = d3.max(nodesData, (d) => d.in) || 1;
-      const color = d3.scaleSequential(d3.interpolatePlasma).domain([0, maxIn]);
+      const color = d3.scaleSequential((t) => d3.interpolateLab("#e8b4ab", "#7a0000")(Math.sqrt(t))).domain([0, maxIn]);
       const radius = (d) => 3.2 + Math.sqrt(d.in) * 1.8;
 
       nodesData
@@ -88,7 +88,7 @@
         .selectAll("line")
         .data(edgesData)
         .join("line")
-        .attr("stroke", "#3a3a40")
+        .attr("stroke", "#cfccc4")
         .attr("stroke-width", 0.7)
         .attr("stroke-opacity", 0.55);
 
@@ -98,7 +98,7 @@
         .join("circle")
         .attr("r", radius)
         .attr("fill", (d) => color(d.in))
-        .attr("stroke", "#08080a")
+        .attr("stroke", "#ffffff")
         .attr("stroke-width", 0.6)
         .style("cursor", "pointer")
         .on("mouseenter", onHoverIn)
