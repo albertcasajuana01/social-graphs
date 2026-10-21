@@ -1,0 +1,1087 @@
+{
+ "note": "Hand labels by the group (read in context). A: 80 random name matches on another character's page, seed 2027. B: 40 random pairs where a page names a character it never links to, seed 2027.",
+ "A": [
+  {
+   "page": "Cable_(character)",
+   "who": "Rachel_Summers",
+   "said": "Rachel Summers",
+   "ctx": " member Cyclops (Scott Summers) and his first wife Madelyne Pryor (Jean Grey's clone), as well as the \"half\"-brother of [[Rachel Summers]] from the \"Days of Future Past\" timeline and Nate Grey from the timeline of the ",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Power_Man_(Victor_Alvarez)",
+   "who": "Iron_Fist_(character)",
+   "said": "Iron Fist",
+   "ctx": "Cage and his partner [[Iron Fist]] eventually learn that Victor is the son of Shades, a Puerto Rican supervillain ",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Black_Panther_(character)",
+   "who": "Shuri_(character)",
+   "said": "Shuri",
+   "ctx": "ol. 5 launched in February 2009, with Hudlin, again scripting, introducing a successor Black Panther, T'Challa's sister [[Shuri]].",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Adam_Warlock",
+   "who": "Moon_Knight",
+   "said": "Moon Knight",
+   "ctx": "This causes them to round up Arachknight (a combination of Spider-Man and [[Moon Knight]]), Ghost Panther (a combination of Ghost Rider and Black Panther), Green Widow (",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Venom_(character)",
+   "who": "Spider-Man",
+   "said": "Peter Parker",
+   "ctx": "It was in that storyline that the costume would envelop [[Peter Parker]] while he slept, and go out at night to fight crime, leaving Parker inexplicably",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Jean_Grey",
+   "who": "Phoenix_Force",
+   "said": "Phoenix Force",
+   "ctx": "While on a solo mission against the Wrecking Crew, Jean receives a vision that the [[Phoenix Force]] is returning to Earth.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Morbius",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": " Kane then discussed and created the character together, deciding it was more appropriate for the science-fiction based [[Spider-Man]] to fight a villain given pseudo-vampiric traits via scientific rather than supe",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Storm_(Marvel_Comics)",
+   "who": "Black_Panther_(character)",
+   "said": "Black Panther",
+   "ctx": "In Marvel Comics, other preceding Black characters with superpowers were [[Black Panther]] (1966), Hobie Brown (the Prowler) and Falcon (1969), Luke Cage (1972), Blade (1",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Emma_Frost",
+   "who": "Jean_Grey",
+   "said": "Jean Grey",
+   "ctx": "As a member of the X-Men, Frost began counseling over Cyclops's marital issues with [[Jean Grey]].",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Mockingbird_(Marvel_Comics)",
+   "who": "Hawkeye_(comics)",
+   "said": "Hawkeye",
+   "ctx": "Their relationship comes under familiar strain when Mockingbird kills an assailant in defence of her husband and [[Hawkeye]] disapproves of her actions, questioning their necessity.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Elsa_Bloodstone",
+   "who": "Ulysses_Bloodstone",
+   "said": "Ulysses Bloodstone",
+   "ctx": "Elsa Bloodstone is the daughter of the previously established Marvel Universe character [[Ulysses Bloodstone]] and the sister of Cullen Bloodstone.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Karnak_(character)",
+   "who": "Black_Bolt",
+   "said": "Black Bolt",
+   "ctx": "He was later sent to Earth with Gorgon in an attempt to find [[Black Bolt]]'s missing son with Daredevil's help.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Spider-Woman_(Jessica_Drew)",
+   "who": "Doctor_Strange",
+   "said": "Doctor Strange",
+   "ctx": "They contact the Avengers and [[Doctor Strange]], who travel to the astral plane to defeat Le Fay, who wanted  to claim Drew's b",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Eddie_Brock",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "When bonded with the host, the Symbiote allows the host to bypass [[Spider-Man]]'s spider-sense, preventing the hero from sensing attacks.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Human_Fly_(character)",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "r escaping from a mental institution, Deacon is killed by the Scourge of the Underworld while trying to take revenge on [[Spider-Man]].",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Iron_Fist_(character)",
+   "who": "Doctor_Strange",
+   "said": "Doctor Strange",
+   "ctx": "However, [[Doctor Strange]] realizes that Iron Fist is now an Immortal Weapon of Agamotto.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Wolverine_(Ultimate_Marvel_character)",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "imply won't just kill him and get it over with, and Logan says that he didn't want to kill Bruce, he wanted to kill the [[Hulk]].",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Starhawk_(character)",
+   "who": "Quasar_(character)",
+   "said": "Quasar",
+   "ctx": "Eon then reveals to Stakar that his biological father [[Quasar]] once wore the bands.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Black_Jack_Tarr",
+   "who": "Shang-Chi",
+   "said": "Shang-Chi",
+   "ctx": "Chi assumes leadership of the Five Weapons Society and acquires the Ten Rings, Tarr dispatches Leiko and Reston to keep [[Shang-Chi]] preoccupied with a fake rescue mission while he and his men retrieve the Rings.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "U.S._Agent",
+   "who": "Hawkeye_(comics)",
+   "said": "Hawkeye",
+   "ctx": "[[Hawkeye]] only catches the part of the speech where Stark talks about Hawkeye's \"loud mou",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Venom_(character)",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "He uses the symbiote to infect the crime bosses and become a criminal kingpin, but he is defeated by [[Spider-Man]], Venom, Black Cat and Agent Anti-Venom.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Jubilee_(character)",
+   "who": "Wolverine_(character)",
+   "said": "Wolverine",
+   "ctx": "[[Wolverine]] brings Jubilee to Professor Xavier at the X-Mansion, who welcomes the girl with",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Jack_Monroe_(character)",
+   "who": "Bucky_(Marvel_Comics)",
+   "said": "Bucky",
+   "ctx": "Monroe then sought out Steve Rogers, and dons a [[Bucky]] costume to help him defeat Viper.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Black_Cat_(Marvel_Comics)",
+   "who": "Spider-Woman",
+   "said": "Spider-Woman",
+   "ctx": "In 1979, creator Marv Wolfman was looking for a female foil for [[Spider-Woman]].",
+   "ok": false,
+   "kind": "a shared codename sent to the wrong page",
+   "why": "Jessica Drew again"
+  },
+  {
+   "page": "Hercules_(Marvel_Comics)",
+   "who": "Ares_(Marvel_Comics)",
+   "said": "Ares",
+   "ctx": "y battles Hercules when trying to rescue an Asgardian goddess from the underworld, but together they defeat instigators [[Ares]] and Pluto who are trying to take over Olympus; battle the Destroyer and then He",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Venom_(character)",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "ans that were rejected by Marvel editors, Michelinie posited that the symbiote would make a human host be able to evade [[Spider-Man]]'s spider sense through it being mutated by absorbing Spider-Man's genetic mater",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Hercules_(Marvel_Comics)",
+   "who": "Hawkeye_(comics)",
+   "said": "Hawkeye",
+   "ctx": "aga, and after being kidnapped by the Elder of the Universe the Collector is freed (with the other Avengers) by comrade [[Hawkeye]] to battle the cosmic entity Korvac who has absorbed power from Galactus's ship,",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Noh-Varr",
+   "who": "Ares_(Marvel_Comics)",
+   "said": "Ares",
+   "ctx": "After their first mission Noh-Varr shows an attraction to teammate Ms. Marvel, which is noticed by teammate [[Ares]], much to his amusement.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Satana_(Marvel_Comics)",
+   "who": "Doctor_Strange",
+   "said": "Doctor Strange",
+   "ctx": "The Basilisk managed to put a curse on [[Doctor Strange]], basically turning him into a werewolf.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Ghost_Rider_(Danny_Ketch)",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "When the Fantastic Four are captured by Skrull forces, Ketch joins Spider-Man, Wolverine, and the [[Hulk]] in forming the new Fantastic Four.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Devil_Dinosaur",
+   "who": "Karnak_(character)",
+   "said": "Karnak",
+   "ctx": "It is later revealed that Leer is Karnak's son and that [[Karnak]] had sold him to Mister Sinister to help activate his powers.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "John_Jameson_(character)",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "hero team 'the Spacemen', who claim to be astronauts who were exposed to cosmic energy during a mission and are hunting [[Spider-Man]] for thefts.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Justice_(New_Universe)",
+   "who": "Star_Brand",
+   "said": "Star Brand",
+   "ctx": "in MacTaggert, the mutant called Proteus (possessing the body of Mimic), in order to thwart his attempts to possess the [[Star Brand]].",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Genis-Vell",
+   "who": "Phyla-Vell",
+   "said": "Phyla-Vell",
+   "ctx": "In Captain Marvel (vol. 10), Carol Danvers and [[Phyla-Vell]] free Genis from the Darkforce.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Mockingbird_(Marvel_Comics)",
+   "who": "Hawkeye_(comics)",
+   "said": "Hawkeye",
+   "ctx": "iversary #1 a grade of 9.3 out of 10, writing, \"It's easy to compare this Mockingbird issue to the recent Matt Fraction [[Hawkeye]] series (she even mentions the ex herself on the very first page) and while it's",
+   "ok": false,
+   "kind": "a title",
+   "why": "Matt Fraction's Hawkeye series"
+  },
+  {
+   "page": "Phoenix_Force",
+   "who": "Scarlet_Witch",
+   "said": "Scarlet Witch",
+   "ctx": "Together, Hope and the [[Scarlet Witch]] wish away the Phoenix Force and the damage it caused, in the process activating",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Mayday_Parker",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "Fearing that Kingsley would prove too much for May, Peter risked his life and once again became [[Spider-Man]] despite his handicap to aid her against him.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Doctor_Strange",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "In Ultimatum, Strange is killed by Dormammu when [[Hulk]] rampages through his house.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Puck_(Marvel_Comics)",
+   "who": "Storm_(Marvel_Comics)",
+   "said": "Storm",
+   "ctx": "In the 2012 series Uncanny X-Force, Puck joins the eponymous team alongside [[Storm]], Psylocke, and Spiral.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Mayday_Parker",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "May donned Ben Reilly's [[Spider-Man]] costume to stop him and soon took to crime-fighting, at first hindered, then he",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Jean_Grey",
+   "who": "Storm_(Marvel_Comics)",
+   "said": "Storm",
+   "ctx": "When X-Factor unites with the X-Men, Jean joins the Gold Team, led by [[Storm]].",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Storm_(Marvel_Comics)",
+   "who": "Black_Cat_(Marvel_Comics)",
+   "said": "Black Cat",
+   "ctx": "Storm was an amalgam of two characters Cockrum created: The [[Black Cat]] (not to be confused with the Spider-Man supporting character) and Typhoon.",
+   "ok": false,
+   "kind": "another character with the same name",
+   "why": "a 1970s Black Cat concept, 'not to be confused with the Spider-Man supporting character'"
+  },
+  {
+   "page": "Cloak_and_Dagger_(characters)",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "They first encountered [[Spider-Man]] during these events.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Emma_Frost",
+   "who": "Cyclops_(Marvel_Comics)",
+   "said": "Cyclops",
+   "ctx": "She's romanced [[Cyclops]], Tony Stark, and Namor, to name a few.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Black_Bolt",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "Black Bolt reappears in a story focusing on his cousin Medusa, drives off the [[Hulk]] after he defeats the entire Inhuman Royal Family (Medusa, Gorgon, Karnak, Trito",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Jean_Grey",
+   "who": "Cyclops_(Marvel_Comics)",
+   "said": "Cyclops",
+   "ctx": "With [[Cyclops]]'s return, Jean began to share leadership of the X-Men with him and eventually s",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Rachel_Summers",
+   "who": "Vulcan_(Marvel_Comics)",
+   "said": "Vulcan",
+   "ctx": "After the death of Corsair at the hands of [[Vulcan]], she, along with Havok, Polaris, Korvus, Ch'od, and Raza Longknife, form a new ",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Hercules_(Marvel_Comics)",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "The strange rainstorm covering the globe seems to protect the [[Hulk]], causing Hercules to be swept away.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Shang-Chi",
+   "who": "Iron_Fist_(character)",
+   "said": "Iron Fist",
+   "ctx": " illustrated by Rudy Nebres, including a seven-issue confrontation with Fu Manchu; the character also crossed over with [[Iron Fist]] in an October 1976 issue of the monthly title and in the sole Master of Kung Fu",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Bob,_Agent_of_Hydra",
+   "who": "Deadpool",
+   "said": "Deadpool",
+   "ctx": "Bob assists [[Deadpool]] when an old enemy threatens all of reality.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Hulkling",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "While Hulkling was patterned on [[Hulk]], he is later revealed to be the son of the Kree superhero Captain Marvel and th",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Morbius",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "[[Spider-Man]] learns Morbius is behind the theft from Martine Bancroft, who is still a true u",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Misty_Knight",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "She aided Iron Fist, [[Spider-Man]], and Colleen Wing against Davos, the Steel Serpent.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Spider-Girl",
+   "who": "Anya_Corazon",
+   "said": "Anya Corazon",
+   "ctx": "The new series featured a new character, [[Anya Corazon]], whose adventures occurred on Earth 616.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Blade_(character)",
+   "who": "Doctor_Strange",
+   "said": "Doctor Strange",
+   "ctx": "In later years, Blade, along with King and Drake, became a frequent ally of the sorcerer [[Doctor Strange]], and the three assisted Strange in battles with Dracula and the Darkholders and",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Eddie_Brock",
+   "who": "Mania_(character)",
+   "said": "Mania",
+   "ctx": "and Flash Thompson (now known as Agent Anti-Venom) take down Lee Price again, who had bonded himself with Venom's clone [[Mania]] and was using it to take over the New York criminal underground.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Hulk_2099",
+   "who": "Hulk",
+   "said": "The Hulk",
+   "ctx": "[[The Hulk]] deals with multiple foes, while Eisenhart has to deal with the backstabbing at ",
+   "ok": false,
+   "kind": "another character with the same name",
+   "why": "on Hulk 2099's page, 'the Hulk' is Hulk 2099"
+  },
+  {
+   "page": "Spider-Woman_(Gwen_Stacy)",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "An alternate-universe version of Gwen Stacy from [[Spider-Man]] stories, she lives on Earth-65, where she was bitten by a radioactive spider as",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Black_Cat_(Marvel_Comics)",
+   "who": "Spider-Man",
+   "said": "Peter Parker",
+   "ctx": "Jesse Schedeen of IGN asserted, \"Spider-Man doesn't have a lot of iconic female villains ([[Peter Parker]] isn't the type to punch a girl if he can help it), but he does have Black Cat.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Black_Panther_(character)",
+   "who": "Storm_(Marvel_Comics)",
+   "said": "Storm",
+   "ctx": "While T'Challa and [[Storm]]'s marriage was annulled in a subsequent storyline, their relationship has conti",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Union_Jack_(Marvel_Comics)",
+   "who": "Citizen_V",
+   "said": "Citizen V",
+   "ctx": "Lord Falsworth appears as a supporting character in Fabian Nicieza and Lewis LaRosa's [[Citizen V]] and the V-Battalion: The Everlasting #1 (March 2002); the story begins with a f",
+   "ok": false,
+   "kind": "a title",
+   "why": "Citizen V and the V-Battalion"
+  },
+  {
+   "page": "Stingray_(Marvel_Comics)",
+   "who": "Gorgon_(Inhuman)",
+   "said": "Gorgon",
+   "ctx": "Stingray is present when Mister Fantastic cures Croft and the other passengers, and aids the Thing and Inhumans [[Gorgon]] and Karnak against Maelstrom's Minions, who steal a dose of the healing compoun",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Speed_(character)",
+   "who": "Hulkling",
+   "said": "Hulkling",
+   "ctx": "In the one-shot Lords of Empyre: Emperor [[Hulkling]], Speed and Prodigy appear to be dating.",
+   "ok": false,
+   "kind": "a title",
+   "why": "Lords of Empyre: Emperor Hulkling"
+  },
+  {
+   "page": "Ruby_Summers",
+   "who": "Cyclops_(Marvel_Comics)",
+   "said": "Cyclops",
+   "ctx": "Although initially at a disadvantage, as Doom has taken control of [[Cyclops]] due to his cyborg nature, Ruby manages to defeat Doom, Cortex, and Cyclops.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Motormouth_(comics)",
+   "who": "Killpower",
+   "said": "Killpower",
+   "ctx": "When Mys-Tech tries to send all of Britain into Hell, Motormouth and [[Killpower]] participate in a battle at London Bridge.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Black_Cat_(Marvel_Comics)",
+   "who": "Spider-Man",
+   "said": "Peter Parker",
+   "ctx": "ted with dismay, telling him to put his mask back on, as she preferred the mystery of Spider-Man to the ordinariness of [[Peter Parker]].",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Rikki_Barnes",
+   "who": "Franklin_Richards_(character)",
+   "said": "Franklin Richards",
+   "ctx": "She is native to an alternate world created by [[Franklin Richards]] in order to save his family, the Fantastic Four, and the rest of the heroes who",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Ghost_Rider_(Johnny_Blaze)",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "Alongside the Ghost Rider and [[Spider-Man]], Blaze then fought the Hobgoblin.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Garrison_Kane",
+   "who": "Deadpool",
+   "said": "Deadpool",
+   "ctx": "Kane battles [[Deadpool]] and is tasked with capturing Cable.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Arabian_Knight_(character)",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "When Red [[Hulk]] and Machine Man arrive in Sharzhad, they encounter Arabian Knight who leads the",
+   "ok": false,
+   "kind": "another character with the same name",
+   "why": "Red Hulk"
+  },
+  {
+   "page": "Captain_Marvel_(Marvel_Comics)",
+   "who": "Scarlet_Witch",
+   "said": "Scarlet Witch",
+   "ctx": "In the alternate, mutant-dominated world created by [[Scarlet Witch]], Carol Danvers (Ms. Marvel in mainstream continuity) uses the name Captain Marv",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Jack_Monroe_(character)",
+   "who": "Nomad_(Marvel_Comics)",
+   "said": "Nomad",
+   "ctx": "During these events, [[Nomad]], Vagabond, and Demolition Man are captured by the Commission and imprisoned.",
+   "ok": false,
+   "kind": "a shared codename sent to the wrong page",
+   "why": "Jack Monroe as Nomad, on his own page; we send 'Nomad' to the page about the name"
+  },
+  {
+   "page": "Spider-Woman_(Gwen_Stacy)",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "Spider-Gwen also stars in a team-up with the alternate [[Spider-Man]]-themed characters from the second volume of Spider-Verse in a series titled Web",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Thor_Girl",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "However, Rage breaks ranks to try to help the Avengers in battle against the [[Hulk]] and his Warbound, and Thor Girl is among the trainees who sides with Rage.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Satana_(Marvel_Comics)",
+   "who": "Deadpool",
+   "said": "Deadpool",
+   "ctx": "[[Deadpool]] comes up with a plan to swindle Satana's soul back from the demons: he marries ",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Venom_(character)",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "During the fight against Blackheart, [[Hulk]] bonded again with the symbiote along with Zarathos to prevent Hell from coming ",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Blade_(character)",
+   "who": "Morbius",
+   "said": "Morbius",
+   "ctx": "The Nightstalkers then teamed with the Ghost Rider, Blaze, [[Morbius]], Doctor Strange, and the Darkhold Redeemers to battle Lilith and her Lilin.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "She-Hulk",
+   "who": "Captain_Marvel_(Marvel_Comics)",
+   "said": "Captain Marvel",
+   "ctx": "After Hawkeye was acquitted for shooting Bruce Banner, [[Captain Marvel]] visited She-Hulk, who came out of her coma.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Anole_(character)",
+   "who": "Rockslide_(character)",
+   "said": "Rockslide",
+   "ctx": "In the following issue, Anole's sexuality was officially stated outright for the first time when [[Rockslide]] announces, \"Anole's gay!\" in an attempt to quickly get the remaining students t",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Spider-Woman",
+   "who": "Spider-Woman_(Jessica_Drew)",
+   "said": "Jessica Drew",
+   "ctx": "Volume Five ran from November 2014 through the fall of 2015, featuring [[Jessica Drew]] as Spider-Woman.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  }
+ ],
+ "B": [
+  {
+   "page": "Morbius",
+   "who": "Black_Fox_(Robert_Paine)",
+   "said": "Dr. Paine",
+   "ctx": "Over the next year, Morbius confronts several new foes, including [[Dr. Paine]], Basilisk (Wayne Gifford), Vic Slaughter, Bloodthirst, and Bloodbath.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Blade_(character)",
+   "who": "Cyclops_(Marvel_Comics)",
+   "said": "Cyclops",
+   "ctx": "He immediately objects to [[Cyclops]]' plan to resurrect Dracula, stating \"You don't dig up Hitler to get rid of Sadd",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Moon_Knight",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "Moon Knight appeared in recurring backup stories in [[Hulk]]!",
+   "ok": false,
+   "kind": "a title",
+   "why": "Hulk!, the magazine"
+  },
+  {
+   "page": "Blue_Eagle_(character)",
+   "who": "Hyperion_(character)",
+   "said": "Hyperion",
+   "ctx": "ppears in Supreme Power, a modern revamp of the Squadron Supreme, in the possible future timeline of the Supreme Power: [[Hyperion]] mini-series.",
+   "ok": false,
+   "kind": "a title",
+   "why": "Supreme Power: Hyperion"
+  },
+  {
+   "page": "Hank_Pym",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "In this reality, Hank Pym is an intelligent, [[Hulk]]-like brute.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Jack_Frost_(Marvel_Comics)",
+   "who": "Rockman_(character)",
+   "said": "Rockman",
+   "ctx": "'s a gathering at the home of Dan Kane (also known as the superhero Captain Terror) of that issue's heroes: Jack Frost, [[Rockman]], the Whizzer, the Defender and the Vagabond.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Adam_Warlock",
+   "who": "Sentry_(Robert_Reynolds)",
+   "said": "Sentry",
+   "ctx": " Universal Church of Truth resurrects him as a child on Earth, who is then imprisoned by the Annihilators inside a Kree [[Sentry]].",
+   "ok": false,
+   "kind": "another character with the same name",
+   "why": "a Kree Sentry, a robot"
+  },
+  {
+   "page": "White_Tiger_(comics)",
+   "who": "Tarantula_(Marvel_Comics)",
+   "said": "Tarantula",
+   "ctx": "She is stabbed by Lady Bullseye and resurrected by the Hand, under their thrall until being healed by Black [[Tarantula]].",
+   "ok": false,
+   "kind": "another character with the same name",
+   "why": "Black Tarantula"
+  },
+  {
+   "page": "Anya_Corazon",
+   "who": "Spider-UK",
+   "said": "Spider-UK",
+   "ctx": "After the universe of [[Spider-UK]] was revealed to have been destroyed while he was fighting the Inheritors, he de",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Adam_Warlock",
+   "who": "Gauntlet_(Joseph_Green)",
+   "said": "Gauntlet",
+   "ctx": "He fails when the Infinity Watch trick him into claiming the [[Gauntlet]] when the Reality Gem has been replaced by a powerless replica, creating a subtl",
+   "ok": false,
+   "kind": "a thing named after a character",
+   "why": "the Infinity Gauntlet"
+  },
+  {
+   "page": "Wolverine_(Ultimate_Marvel_character)",
+   "who": "She-Hulk",
+   "said": "She-Hulk",
+   "ctx": "Then [[She-Hulk]] arrives and confronts an angry Hulk, Wolverine reattaches his legs as Hulk atta",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Gwenpool",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "Gwen leaves the GwenHive to enter combat with the [[Hulk]] while she dives into continuity, leading to the death of the Gwen from Champion",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Ms._Marvel",
+   "who": "Spider-Man",
+   "said": "Spider-Man",
+   "ctx": "A bold new super-heroine in the senses-stunning tradition of [[Spider-Man]]!'",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Hercules_(Marvel_Comics)",
+   "who": "Black_Knight_(Marvel_Comics)",
+   "said": "Black Knight",
+   "ctx": "They find out from the [[Black Knight]]'s spirit he lost his memory after being thrown from Olympus and drifting for si",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Karnak_(character)",
+   "who": "Devil_Dinosaur",
+   "said": "Devil Dinosaur",
+   "ctx": "e team books All-New Inhumans and Uncanny Inhumans, alongside the other solo titles Ms. Marvel vol. 4 and Moon Girl and [[Devil Dinosaur]]).",
+   "ok": false,
+   "kind": "a title",
+   "why": "Moon Girl and Devil Dinosaur"
+  },
+  {
+   "page": "Ghost_Rider",
+   "who": "Machine_Man",
+   "said": "Machine Man",
+   "ctx": "He later appears in Marvel Zombies 3 as an infected while chasing [[Machine Man]] and is then easily decapitated.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Jubilee_(character)",
+   "who": "Phoenix_Force",
+   "said": "Phoenix Force",
+   "ctx": "Quentin Quire sacrifices his shard of the [[Phoenix Force]] to save Jubilee, curing her of her vampirism and restoring her mutant powers.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Hercules_(Marvel_Comics)",
+   "who": "Hank_Pym",
+   "said": "Hank Pym",
+   "ctx": "To meet this threat Cho and Hercules form a new team of Mighty Avengers along with U.S. Agent, Vision, [[Hank Pym]], Stature, Quicksilver and Jocasta.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Spider-Man_Noir",
+   "who": "Spider-UK",
+   "said": "Spider-UK",
+   "ctx": "[[Spider-UK]] arrives and requests Spider-Man Noir on an important mission.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Jessica_Jones",
+   "who": "Guardian_(Marvel_Comics)",
+   "said": "Guardian",
+   "ctx": "Ned Beauman of The [[Guardian]] called her \"one of the bravest, wittiest and most sensitive portraits of a fema",
+   "ok": false,
+   "kind": "a thing named after a character",
+   "why": "The Guardian, the newspaper"
+  },
+  {
+   "page": "Jean_Grey",
+   "who": "Scarlet_Witch",
+   "said": "Scarlet Witch",
+   "ctx": "As more and more female characters arrived--Storm, [[Scarlet Witch]], and Mystique all debuted throughout the 60s and 70s--it became increasingly co",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Deathlok",
+   "who": "Wolverine_(character)",
+   "said": "Wolverine",
+   "ctx": "An original, unnamed incarnation of Deathlok named Deathlok Prime appears in Uncanny X-Force and [[Wolverine]] and the X-Men.",
+   "ok": false,
+   "kind": "a title",
+   "why": "Wolverine and the X-Men"
+  },
+  {
+   "page": "Ulysses_Bloodstone",
+   "who": "Elsa_Bloodstone",
+   "said": "Elsa Bloodstone",
+   "ctx": "[[Elsa Bloodstone]] is the daughter of Ulysses Bloodstone.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Spider-Man",
+   "who": "Spider-Girl",
+   "said": "Spider-Girl",
+   "ctx": "These include [[Spider-Girl]] (Mayday Parker) and Benjy Parker from the MC2 universe, and Spiderling (Annie P",
+   "ok": false,
+   "kind": "a shared codename sent to the wrong page",
+   "why": "Mayday Parker, who has her own page"
+  },
+  {
+   "page": "Hercules_(Marvel_Comics)",
+   "who": "Ghost_Rider",
+   "said": "Ghost Rider",
+   "ctx": "The original Champions (Hercules, Iceman, Angel, [[Ghost Rider]] and Darkstar) reunite at the location of their former headquarters in Los Angel",
+   "ok": false,
+   "kind": "a shared codename sent to the wrong page",
+   "why": "Johnny Blaze, who has his own page"
+  },
+  {
+   "page": "Surge_(Marvel_Comics)",
+   "who": "Hellion_(character)",
+   "said": "Hellion",
+   "ctx": "ry forthright and strong-minded, Nori often clashes with her peers and superiors, from nearly getting into a brawl with [[Hellion]] after he insulted Prodigy's baseline status post-M-Day, and challenging Cyclops",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Darkhawk",
+   "who": "Starhawk_(character)",
+   "said": "Starhawk",
+   "ctx": "The Raptors' leader Gyre reveals to Powell that the amulet is the key to unleashing the Ratha'kon or Dark [[Starhawk]], which the Shi'ar intended to be a \"predator\" to the Phoenix Force.",
+   "ok": false,
+   "kind": "a thing named after a character",
+   "why": "the Dark Starhawk, an entity"
+  },
+  {
+   "page": "Jessica_Jones",
+   "who": "Captain_Marvel_(Marvel_Comics)",
+   "said": "Captain Marvel",
+   "ctx": "l's \"most seasoned street-level heroes,\" stating, \"Jessica Jones has the abilities of someone who should be helping out [[Captain Marvel]] or even the Guardians of the Galaxy.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Flatman_(character)",
+   "who": "Deadpool",
+   "said": "Deadpool",
+   "ctx": "[[Deadpool]] mistakenly attempts to apprehend them for violating the Act, only to be informe",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Eddie_Brock",
+   "who": "Deadpool",
+   "said": "Deadpool",
+   "ctx": "He and Dylan are rescued by Agent Symbiotes (such as the alternate Anne Weying, Spider-Man, [[Deadpool]], and Cletus Kasady).",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Misty_Knight",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "Returning from a mission to capture Moon-Boy during the \"World War [[Hulk]]\" storyline, Heroes for Hire arrive in New York to see that it has been taken ov",
+   "ok": false,
+   "kind": "a title",
+   "why": "World War Hulk, a storyline"
+  },
+  {
+   "page": "Anya_Corazon",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "When Gil is killed, she fights the Red [[Hulk]] who she initially believes is responsible.",
+   "ok": false,
+   "kind": "another character with the same name",
+   "why": "Red Hulk"
+  },
+  {
+   "page": "U.S._Agent",
+   "who": "Venom_(character)",
+   "said": "Venom",
+   "ctx": "June Covington is seemingly able to restore his lost limbs with help from this reality's version of the [[Venom]] symbiote in lobotomized form.",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Puck_(Marvel_Comics)",
+   "who": "Blade_(character)",
+   "said": "Blade",
+   "ctx": "The [[Blade]] imprisoned an ancient sorcerer called Black Raazer, and Judd accidentally freed",
+   "ok": false,
+   "kind": "a thing named after a character",
+   "why": "the Blade, a sword"
+  },
+  {
+   "page": "Spider-Bitch_(Ashley_Barton)",
+   "who": "Hawkeye_(comics)",
+   "said": "Hawkeye",
+   "ctx": "She is the estranged daughter of Peter Parker / Spider-Man's youngest daughter Tonya and Clint Barton / [[Hawkeye]], and the stepdaughter of Tonya's husband Ultron 8, from the alternate-future of",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Fin_Fang_Foom",
+   "who": "Hulk",
+   "said": "Hulk",
+   "ctx": "The villain Nightmare transformed one of the Mindless Ones into a copy of Foom to battle the [[Hulk]] in Hulk (vol. 3) #79 (May 2005).",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Ms._Marvel",
+   "who": "Spider-Woman_(Jessica_Drew)",
+   "said": "Jessica Drew",
+   "ctx": "His first shot, the Spider-Woman: Origin miniseries, is a decent re-introduction to [[Jessica Drew]].",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Patsy_Walker",
+   "who": "Outlaw_(Marvel_Comics)",
+   "said": "Outlaw",
+   "ctx": "Attesting to its quiet popularity, Patsy Walker (along with Millie the Model and Kid Colt, [[Outlaw]]) was among the very few titles published continuously by Marvel from the 1940s ",
+   "ok": false,
+   "kind": "a title",
+   "why": "Kid Colt, Outlaw, a comic"
+  },
+  {
+   "page": "Mayday_Parker",
+   "who": "Captain_Universe",
+   "said": "Captain Universe",
+   "ctx": "When Peter and Octavius clash and do battle with each other, Mayday requests that [[Captain Universe]] Spider-Man intervene and stop the fighting, as better time and energy could be ",
+   "ok": true,
+   "kind": null,
+   "why": null
+  },
+  {
+   "page": "Man-Thing",
+   "who": "Black_Knight_(Marvel_Comics)",
+   "said": "Black Knight",
+   "ctx": "Doctor Voodoo takes control of Man-Thing to free Matthew and [[Black Knight]].",
+   "ok": true,
+   "kind": null,
+   "why": null
+  }
+ ]
+}

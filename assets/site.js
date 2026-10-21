@@ -8,6 +8,7 @@
     { n: 4, href: "week4-renaissance.html", title: "Where did the Renaissance go? 200 Louvain runs" },
     { n: 5, href: "week5-copying.html", title: "Wikipedia copies the paperwork, not the plot" },
     { n: 6, href: "week6-names.html", title: "Names or story? What Marvel lookalikes share" },
+    { n: 7, href: "week7-hawkeye.html", title: "Can the text rebuild the network? Names, links and the Hawkeye problem" },
   ];
   const inPosts = /\/posts\//.test(location.pathname);
   const base = inPosts ? "" : "posts/";

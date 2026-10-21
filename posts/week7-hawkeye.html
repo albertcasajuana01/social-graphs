@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 7 — Can the text rebuild the network? | The Marvel Web</title>
+  <meta name="description" content="We found every character named in 29,006 sentences of the Marvel pages, rebuilt the network from names alone and compared it with the hyperlinks pair by pair. 82% of links match a name. Where they disagree, the name is usually a codename several characters share, and the link says which one: 43 pages name Hawkeye, and none links to his page." />
+  <meta name="theme-color" content="#fbfaf7" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="../style.css?v=9" />
+  <link rel="stylesheet" href="../assets/week7.css?v=1" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%225%22 fill=%22%23990000%22/><text x=%2216%22 y=%2223%22 font-family=%22Georgia,serif%22 font-size=%2219%22 font-weight=%22700%22 fill=%22white%22 text-anchor=%22middle%22>M</text></svg>" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-name">The Marvel Web</span>
+        <span class="brand-sub">Social Graphs &amp; Interactions · DTU 02805</span>
+      </a>
+      <nav class="main-nav" aria-label="Main">
+        <a href="../index.html">Home</a>
+        <details class="menu"><summary>Weekly posts</summary><div class="menu-list" data-posts></div></details>
+        <a href="../index.html#about" class="hide-sm">About</a>
+        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+    <div class="progress"></div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <article>
+        <div class="article-head">
+          <p class="kicker">Week 07 · From meaning to measurement</p>
+          <h1>Can the text rebuild the <em>network</em>?</h1>
+          <p class="dek">A hyperlink is an editor's decision. A name is just words on the page. We found every character named in 29,006 sentences of the Marvel pages, built the network from names alone, and compared it with the hyperlinks pair by pair. Wherever the two disagreed, we read the wiki source to find out why.</p>
+          <div class="byline">
+            <span><b>Albert, Viktor &amp; Mariona</b></span>
+            <span>Measurement: named-entity matching + Wikipedia's own redirects</span>
+            <span>303 pages · week-1 link network</span>
+            <span>12 min read</span>
+          </div>
+        </div>
+
+        <div class="stat-grid reveal">
+          <div class="stat-card"><div class="num"><em>81.5%</em></div><div class="label">of links point to a character the linking page <b>names</b> in its text</div></div>
+          <div class="stat-card"><div class="num">43 / 0</div><div class="label">pages that <b>name</b> Hawkeye / pages that <b>link</b> to his page</div></div>
+          <div class="stat-card"><div class="num">37%</div><div class="label">of the links the text misses are a <b>shared codename</b> (Ghost Rider, Spider-Woman, Psylocke)</div></div>
+          <div class="stat-card"><div class="num">62.5%</div><div class="label">of the names <b>nobody linked</b> are real mentions (90% of all our matches are right)</div></div>
+        </div>
+
+        <h2 id="question"><span class="sec">01 · The question</span>Is a link just a name?</h2>
+        <p class="lead-p">
+          Last week we wrote that "a hyperlink from page A to page B means A mentions B by name". We built that
+          post on the assumption and never checked it. This is the last week of the language block, so we
+          tested it on the whole corpus:
+        </p>
+        <p class="pull">If we deleted every hyperlink, could the words alone rebuild the Marvel network? And where the words and the links disagree, which one is wrong?</p>
+        <p>
+          From names alone you can build two networks. The <strong>mention network</strong> has an edge A → B
+          when A's page names B. It has the same shape as a link, so the two can be compared edge by edge. The
+          <strong>co-mention network</strong> has an edge A – B when one sentence, on any of the 303 pages, names
+          both. That edge is about who appears together, which a link doesn't record. In both, the hard part is
+          deciding <em>who a name refers to</em>.
+        </p>
+
+        <h2 id="names"><span class="sec">02 · Measurement</span>Finding the names is the hard part</h2>
+        <p>
+          Spider-Man's page calls him <i>Spider-Man</i>, <i>Peter Parker</i>, <i>Peter</i> and <i>Parker</i>.
+          The other pages call 303 characters by about 600 different names, and many of those names are traps.
+          We collected 835 candidate names from three places: the page titles, the characters' Wikidata aliases,
+          and the parenthesis in each page's first sentence ("The Abomination <i>(Emil Blonsky)</i> is…"). Then
+          we resolved them with one rule we can defend:
+        </p>
+        <p class="pull">A name counts for a character only if Wikipedia itself sends that name to the character's page.</p>
+        <p>
+          We asked Wikipedia where each of the 835 names leads, following redirects, and saved the answers.
+          The rule settles most cases with no judgement on our part:
+        </p>
+        <div class="table-scroll">
+          <table class="stats traps">
+            <thead><tr><th>the text says</th><th>Wikipedia sends it to</th><th>so we read it as</th></tr></thead>
+            <tbody>
+              <tr><td><i>Peter Parker</i></td><td>Spider-Man</td><td class="ok">Spider-Man</td></tr>
+              <tr><td><i>Johnny Storm</i></td><td>Human Torch</td><td class="ok">Human Torch</td></tr>
+              <tr><td><i>Steve Rogers</i> (a Wikidata alias of William Burnside, who impersonated him)</td><td>Captain America, not one of the 303</td><td class="no">nobody</td></tr>
+              <tr><td><i>Tony Stark</i> (an alias of the <i>Ultimate</i> Iron Man page)</td><td>Iron Man, not one of the 303</td><td class="no">nobody</td></tr>
+              <tr><td><i>Gwen Stacy</i> (from the title "Spider-Woman (Gwen Stacy)")</td><td>the original Gwen Stacy, not Spider-Gwen</td><td class="no">nobody</td></tr>
+              <tr><td><i>Black Widow</i></td><td>a disambiguation page</td><td class="mid">Natasha Romanova: the other pages use her other names 16 times, Yelena Belova's 5 times</td></tr>
+              <tr><td><i>Wolverine</i></td><td>the animal</td><td class="mid">the page title wins, and the main page beats <i>Ultimate</i> Wolverine</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Three more rules handle what Wikipedia can't. <strong>Titles aren't characters</strong>: <i>The Amazing
+          Spider-Man #129</i>, <i>Spider-Man: No Way Home</i> and <i>Power Man and Iron Fist #73</i> are
+          citations, so a name followed by an issue number, a colon or a sequel number doesn't count. We also
+          drop the <em>In other media</em> sections, which are mostly film titles and cast lists. <strong>Some
+          names are ordinary words</strong>: a word like <i>force</i> or <i>storm</i> doesn't count when it's
+          glued to another capitalized word (<i>Air Force</i>, <i>Sue Storm</i>, <i>Ebony Blade</i>). And
+          <strong>on its own page, a character's own names mean that character</strong>: on Johnny Blaze's page,
+          "Ghost Rider" is Johnny Blaze. The exception is the 44 pages about a codename itself
+          ("Bucky is the name used by several different characters…"), where the codename can mean any of its holders.
+        </p>
+        <p>
+          Then we read the output. We took <strong>80 random name matches on other characters' pages</strong> and
+          checked each one in its sentence. <strong>72 were right (90%).</strong> The 8 misses were titles
+          (<i>Citizen V and the V-Battalion</i>, Matt Fraction's <i>Hawkeye</i> series), other characters with the
+          same name (Red Hulk, a 1970s Black Cat "not to be confused with the Spider-Man supporting character") and
+          two codenames sent to the wrong holder. The full list is in the table at the end. We tuned the rules on
+          two earlier samples and drew this one, with a new seed, only once the rules were frozen.
+        </p>
+
+        <h2 id="answer"><span class="sec">03 · The answer</span>Mostly yes, and then there's Hawkeye</h2>
+        <p>
+          Of the 1,784 links, <strong>1,454 (81.5%) point to a character whom the linking page also names</strong> in
+          its prose. In the other direction, 78% of the 1,869 pairs where a page names a character are also
+          links. The text gets most of the way back to the network. So we compared, character by character, how
+          many pages <em>name</em> them with how many <em>link</em> to them:
+        </p>
+
+        <div class="fig bleed reveal" id="fig1">
+          <div class="fig-head">
+            <div class="fig-no">Figure 1 · Named by, linked by</div>
+            <h3 class="fig-title">How many pages name each character, and how many link to their page</h3>
+          </div>
+          <div class="fig-body">
+            <div class="controls">
+              <div class="seg" id="f1-mode" role="group" aria-label="Which characters">
+                <button data-v="named" class="active">Named more than linked</button>
+                <button data-v="linked">Linked more than named</button>
+                <button data-v="top">Most named</button>
+              </div>
+              <input type="search" id="f1-find" list="char-list" placeholder="Find a character…" aria-label="Find a character" />
+            </div>
+            <p class="how">Click a row to see every page that names or links that character, and read the sentence and the wiki source behind each one.</p>
+            <div class="legend" id="f1-legend"></div>
+            <div class="chart" id="f1-chart"></div>
+            <div id="f1-insp" class="insp" hidden></div>
+          </div>
+          <p class="fig-cap">
+            ● = number of pages whose prose names the character at least once. ○ = number of pages with a link
+            to the character's page (week-1 network). A <span class="tag-mantle">name page</span> is a page about
+            a codename several characters have used ("Hawkeye is the name of several fictional characters…").
+            Names are resolved as in section 2. <em>In other media</em> sections are left out.
+          </p>
+        </div>
+
+        <p>
+          Hawkeye is the fifth most-named character in the corpus. <strong>Forty-three pages name him, 137
+          times, and not one links to his page.</strong> The corpus's Hawkeye page is a page about the
+          <em>name</em>, which Clint Barton, Kate Bishop and others have all used. When an editor links the word
+          <i>Hawkeye</i>, they link the <em>person</em>: 36 of our pages link "Hawkeye (Clint Barton)", 63 times
+          in total. That article isn't in Wikipedia's <i>Marvel Comics superheroes</i> category, so it isn't one
+          of our 303 nodes. In the week-1 network Hawkeye has in-degree zero, and every centrality we computed
+          for him in weeks 1–3 was measured on a page nobody links to.
+        </p>
+        <p>
+          The top of Figure 1 is all name pages: Captain Marvel, Spider-Woman, Ms. Marvel, Ghost Rider, Black
+          Knight, Bucky. Switch to <b>Linked more than named</b> and you get the people behind those names: the
+          android Human Torch, Spider-Gwen, Jessica Drew, Mayday Parker. Text and links don't disagree at random.
+          <strong>The text names roles, and the links pick people.</strong>
+        </p>
+
+        <h2 id="why"><span class="sec">04 · Every disagreement, explained</span>Why a link has no name, and a name has no link</h2>
+        <p>
+          To see why each pair disagrees, we needed the wiki source, not the rendered text. The source shows
+          every <code>[[target|shown text]]</code> and where on the page it sits. We downloaded the last revision
+          of each page on or before the course snapshot (26 August 2026). The links in those sources reproduce
+          <strong>1,781 of the course's 1,784 edges</strong>, so the course network is exactly the
+          <code>[[links]]</code> in the source. Then we gave every disagreeing pair a reason:
+        </p>
+
+        <div class="fig bleed reveal" id="fig2">
+          <div class="fig-head">
+            <div class="fig-no">Figure 2 · The two ledgers</div>
+            <h3 class="fig-title">Every link and every name, and why the two disagree</h3>
+          </div>
+          <div class="fig-body">
+            <div id="f2-bars"></div>
+            <div id="f2-list" class="insp" hidden></div>
+          </div>
+          <p class="fig-cap">
+            Top: the 1,784 links (A links to B). Bottom: the 1,869 pairs where A's prose names B. Blue is the
+            1,454 pairs that are both. Click a segment to list its pairs, and click a pair to read the sentence on
+            A's page and the line of A's wiki source where the link sits (or doesn't).
+          </p>
+        </div>
+
+        <p>
+          <strong>A link with no name (330 links).</strong> The largest group, <strong>122 links (37%)</strong>, is the
+          Hawkeye problem from the other side. The text says <i>Ghost Rider</i>, <i>Spider-Woman</i>,
+          <i>Psylocke</i> or <i>Giant-Man</i>, and the editor linked the specific holder: Johnny Blaze, Jessica
+          Drew, Betsy Braddock, Hank Pym. Our rule either sends the codename to the name page or, when several
+          characters claim it and Wikipedia won't choose, to nobody. Another 81 links sit on words that aren't on our name
+          lists, such as an alter ego (<i>Chris Powell</i> for Darkhawk, <i>Wendell Vaughn</i> for Quasar) or a
+          description. Seventy-four are not in the prose at all: they're in a reference, an italic comic title
+          or the infobox. Thirty-two are only in <em>In other media</em>, which we left out. Only
+          <strong>21</strong> are names our matcher should have caught and didn't.
+        </p>
+        <p>
+          <strong>A name with no link (415 pairs).</strong> In 165 of them the editor did link those words, but
+          to a different page. Forty-seven links go to another of our 303 pages (the text says <i>Human Torch</i>,
+          the link says the android). One hundred eighteen go to a page outside the corpus: Clint Barton in 29
+          pairs, Carol Danvers in 16 (as <i>Captain Marvel</i> and <i>Ms. Marvel</i>), Dane Whitman, Kamala
+          Khan, Mar-Vell, Ben Reilly. Some of those 118 go to films, storylines and a novel, so a few are our
+          own title errors. In the other 250 pairs, the words are never linked on the page at all.
+        </p>
+
+        <h2 id="unlinked"><span class="sec">05 · Reading the text</span>The names nobody linked</h2>
+        <p>
+          The 250 names nobody linked are where our measurement and Wikipedia disagree most directly, so we
+          read them. We took a random 40 and checked each sentence. <strong>25 are real</strong>: the page
+          names the character and doesn't link them. For example, Ulysses Bloodstone's page says "Elsa Bloodstone
+          is the daughter of Ulysses Bloodstone", and that sentence has no link. Hercules forms the Mighty Avengers
+          with Hank Pym, also without a link. <strong>15 are our errors</strong>: 6 titles (<i>Wolverine and the
+          X-Men</i>, <i>World War Hulk</i>, <i>Moon Girl and Devil Dinosaur</i>), 4 things named after a character
+          (the Infinity Gauntlet, the Blade, which is a sword), 3 other characters with the same name (a Kree Sentry robot,
+          Black Tarantula) and 2 codenames sent to the page about the name instead of the holder's own page.
+        </p>
+        <p class="pull">Our matcher is right 90% of the time overall, but only 62.5% of the time on names nobody linked.</p>
+        <p>
+          That's the most useful thing we learned about measuring with text. Our errors aren't spread evenly.
+          A wrong match is almost never linked, so the errors pile up in exactly the pairs where text and links
+          disagree. Those are the pairs you'd write a post about. "The text finds 250 relations the links miss"
+          would have been more than a third wrong. You only find that out by reading them.
+        </p>
+
+        <h2 id="together"><span class="sec">06 · Co-mentions</span>Who is named in the same sentence?</h2>
+        <p>
+          The mention network asks "does A's page name B?". The co-mention network asks "are A and B named
+          together?", on any page. It's the network the course's entity-extraction exercise builds, and it has a
+          choice that a link network doesn't have: <strong>the unit</strong>. Two names in one sentence is strong
+          evidence. Two names on one page is weak. We built it at three units and several thresholds, and scored
+          each version against the (undirected) links:
+        </p>
+
+        <div class="fig reveal" id="fig3">
+          <div class="fig-head">
+            <div class="fig-no">Figure 3 · The unit is a dial</div>
+            <h3 class="fig-title">Co-mention networks scored against the links</h3>
+          </div>
+          <div class="fig-body">
+            <div class="legend" id="f3-legend"></div>
+            <div class="chart" id="f3-chart"></div>
+            <div class="sub-k">Roll calls: share of co-mentioned pairs that are linked, by how many characters the sentence names</div>
+            <div class="chart" id="f3-roll"></div>
+          </div>
+          <p class="fig-cap">
+            Top: each point is one co-mention network, with an edge when two characters are named together in at
+            least <i>k</i> sentences, paragraphs or pages (<i>k</i> = 1…6, labelled). Across: the share of the
+            1,434 linked pairs it finds (recall). Up: the share of its edges that are linked (precision). The
+            dashed line is chance: 3.1% of all pairs are linked. Bottom: every pair from every sentence, grouped
+            by the number of characters that sentence names.
+          </p>
+        </div>
+
+        <p>
+          At the sentence level, the co-mention network finds 68% of the linked pairs, and two thirds of its edges
+          are links. Requiring three shared sentences raises precision to 86% but finds only a quarter of the links.
+          Page-level co-mention finds 91% of the links at 23% precision, which is mostly noise. The bottom chart
+          shows where the noise comes from: <strong>roll calls</strong>. When a sentence names two characters,
+          86% of the pairs are linked. When it lists six or more ("…Doctor Doom, Man-Thing, Luke Cage, Moon Girl,
+          Devil Dinosaur…") it's 45%. One sentence like that adds 15 or more edges. Pairs named together
+          on <em>someone else's</em> page are linked 63% of the time, against 87% when one of the two is the
+          page's own subject.
+        </p>
+
+        <h2 id="surprise"><span class="sec">07 · What surprised us</span>The network was never about names</h2>
+        <p>
+          We expected the disagreements to be about <em>coverage</em>: names in the text that nobody bothered to
+          link. There are some (section 5), but most disagreements are about <strong>identity</strong>. A name
+          like <i>Hawkeye</i> is shared, and a link has to say who. Wikipedia's category puts the shared-name page
+          in our corpus and leaves the people out, so the link network quietly loses Clint Barton, Carol Danvers
+          and Kamala Khan, three of Marvel's best-known heroes. The text network keeps them, merged into their
+          codenames. Neither is the "real" Marvel network. The links are precise about people and blind to
+          anyone outside the category. The text sees everyone but can't tell two Hawkeyes apart.
+        </p>
+        <p>
+          The other surprise was how exact the course data is: the week-1 edge list is the
+          <code>[[links]]</code> in the page source, with 1,781 of 1,784 edges reproduced. So every disagreement could
+          be explained from the source rather than guessed.
+        </p>
+
+        <h2 id="audit"><span class="sec">08 · What we checked</span>The two samples we read</h2>
+        <p>Everything above rests on these two hand-labelled samples. Click a tab to see them, sentence by sentence.</p>
+        <div class="fig reveal" id="fig4">
+          <div class="fig-body">
+            <div class="controls">
+              <div class="seg" id="f4-tab" role="group" aria-label="Sample">
+                <button data-v="A" class="active">80 random name matches</button>
+                <button data-v="B">40 names nobody linked</button>
+              </div>
+            </div>
+            <div id="f4-sum" class="audit-sum"></div>
+            <div id="f4-list" class="audit-list"></div>
+          </div>
+          <p class="fig-cap">
+            The bracketed name is the match being judged. ✓ = it is the character we resolved it to (sample A), or
+            a real mention of that character (sample B). ✗ = our error, with its kind. Random seed 2027, drawn from
+            the final pipeline.
+          </p>
+        </div>
+
+        <h2 id="limits"><span class="sec">09 · Limitations</span>What this can't tell you</h2>
+        <ul>
+          <li><strong>Names only, no pronouns.</strong> "She" and "he" never count, so a sentence about Storm that
+            says "she" adds nothing. The co-mention network only sees explicit names.</li>
+          <li><strong>Our name lists are incomplete.</strong> 80 links sit on alter egos and nicknames that
+            neither Wikidata nor the first sentence gave us (<i>Chris Powell</i>, <i>Wendell Vaughn</i>).</li>
+          <li><strong>Shared codenames are unresolvable from the name alone.</strong> We send them to the name
+            page or to nobody. Telling Clint Barton from Kate Bishop would need the surrounding story, which a
+            contextual model might do. We didn't try.</li>
+          <li><strong>90% precision is an estimate from 80 matches</strong> (roughly ±7 points), and it is
+            lower among the pairs that disagree (62.5% from 40). Treat any single "named but not linked" pair
+            as unverified until you read it, which Figures 1 and 2 let you do.</li>
+          <li><strong>Revision drift.</strong> The wiki source is the last revision on or before the snapshot date,
+            and three course edges don't appear in it. Twelve pages were merged or renamed after the
+            snapshot (ten members of Strikeforce: Morituri, Dargo Ktor and Vindicator), so we fetched each one's own history.</li>
+        </ul>
+
+        <p class="chart-note">
+          Reproduce: <code>cd analysis &amp;&amp; python week7_comention.py</code> (about a minute; writes
+          <code>assets/week7_comention.json</code>). It reads three frozen files that
+          <code>week7_fetch_aliases.py</code> and <code>week7_fetch_wikitext.py</code> fetched once from Wikidata and
+          Wikipedia: the names and where Wikipedia sends them, and each page's wiki source at the snapshot. The hand
+          labels are in <code>analysis/data/week7_audit.json</code>. Data: the course's frozen Marvel snapshot
+          (<code>marvel_pages.zip</code> + week-1 network, 2026-08-26).
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <datalist id="char-list"></datalist>
+
+  <footer>
+    <div class="inner">
+      <div>
+        <div class="fm">The Marvel Web</div>
+        Built for 02805 Social Graphs &amp; Interactions, DTU.<br />Data: Wikipedia <code>Category:Marvel Comics superheroes</code>, frozen snapshot 2026-08-26.
+      </div>
+      <div class="links">
+        <a href="../index.html">All posts</a>
+        <a href="https://github.com/albertcasajuana01/social-graphs" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="tip" id="tip"></div>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="../assets/site.js?v=9"></script>
+  <script src="../assets/week7.js?v=1"></script>
+</body>
+</html>
