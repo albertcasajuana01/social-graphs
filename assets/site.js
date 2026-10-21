@@ -81,13 +81,21 @@
       });
       document.body.appendChild(toc);
       const links = [...toc.querySelectorAll("a")];
+      // wide figures break out into the margin where the rail sits: step aside while one passes behind it
+      const wide = [...article.querySelectorAll(".bleed")];
       const spy = () => {
-        toc.classList.toggle("on", heads[0].getBoundingClientRect().top < window.innerHeight * 0.9);
+        const t = toc.getBoundingClientRect();
+        const blocked = wide.some((el) => {
+          const r = el.getBoundingClientRect();
+          return r.left < t.right && r.top < t.bottom + 16 && r.bottom > t.top - 16;
+        });
+        toc.classList.toggle("on", heads[0].getBoundingClientRect().top < window.innerHeight * 0.9 && !blocked);
         let cur = 0;
         heads.forEach((h, i) => { if (h.getBoundingClientRect().top < 150) cur = i; });
         links.forEach((a, i) => a.classList.toggle("cur", i === cur));
       };
       window.addEventListener("scroll", spy, { passive: true });
+      window.addEventListener("resize", spy);
       spy();
     }
   }

@@ -1,16 +1,7 @@
 /* Week 7 — Can the text rebuild the network? */
 :root {
-  --named: #2a78d6;      /* the text: pages that name a character */
-  --linked: #1c1b19;     /* the links: pages that link to a character */
-  --f-agree: #2a78d6;
-  --f-codename: #eb6834;
-  --f-holder: #eb6834;
-  --f-outside: #f3a77f;
-  --f-words: #1baf7a;
-  --f-notprose: #9a978f;
-  --f-media: #cfccc4;
-  --f-missed: #990000;
-  --f-never: #6b5ca5;
+  --named: #2f5d8a;      /* the text: pages that name a character (muted navy) */
+  --linked: #1c1b19;     /* the links: pages that link to a character (ink) */
 }
 
 /* ---------- shared figure chrome (as in week 6) ---------- */
@@ -39,7 +30,7 @@
 /* ---------- section 2: the traps table ---------- */
 .traps td { font-size: .84rem; vertical-align: top; }
 .traps td:first-child { min-width: 210px; }
-.traps td.ok { color: #1d5fae; font-weight: 600; }
+.traps td.ok { color: var(--named); font-weight: 600; }
 .traps td.no { color: var(--muted); font-style: italic; }
 .traps td.mid { color: var(--text-dim); }
 
@@ -53,10 +44,11 @@
 .db-row .d-named { fill: var(--named); }
 .db-row .d-linked { fill: #fff; stroke: var(--linked); stroke-width: 2; }
 .db-row .v { font-size: 10.5px; fill: var(--muted); font-variant-numeric: tabular-nums; }
-.db-row .badge { font-size: 9.5px; fill: #b0441a; letter-spacing: .02em; }
+.db-row .badge { font-size: 9px; fill: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
 .tag-mantle {
-  font-family: var(--sans); font-size: .72rem; color: #b0441a; border: 1px solid rgba(235,104,52,.45);
-  background: #fdf0ea; border-radius: 4px; padding: 0 6px; white-space: nowrap;
+  font-family: var(--sans); font-size: .66rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--muted); border: 1px solid var(--line-strong); border-radius: 3px; padding: 0 5px; white-space: nowrap;
+  vertical-align: 2px;
 }
 
 /* ---------- inspector + evidence ---------- */
@@ -89,9 +81,9 @@
 .ev-k:first-of-type { margin-top: 0; }
 .ev .line { font-family: var(--serif); font-size: .92rem; line-height: 1.55; color: #2b2a27; margin: 0 0 6px; }
 .ev .line .sec { font-family: var(--sans); font-size: .66rem; color: var(--muted); margin-left: 6px; white-space: nowrap; }
-.ev mark { background: #dbe8f8; color: var(--text); font-weight: 700; padding: 0 2px; border-radius: 2px; }
+.ev mark { background: #e2e8ef; color: var(--text); font-weight: 700; padding: 0 2px; border-radius: 2px; }
 .ev .src { font-family: var(--mono); font-size: .74rem; line-height: 1.6; color: var(--text-dim); background: var(--bg-raised); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; word-break: break-word; }
-.ev .src mark { background: #fbe3cf; }
+.ev .src mark { background: #efe6dc; }
 .ev .src .lk { color: var(--accent); }
 .ev .none { font-size: .8rem; color: var(--muted); font-style: italic; margin: 0; }
 
@@ -120,17 +112,17 @@
 .audit-sum { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
 .audit-sum .chip { font-size: .76rem; color: var(--text-dim); border: 1px solid var(--line-strong); border-radius: 4px; padding: 3px 10px; font-variant-numeric: tabular-nums; }
 .audit-sum .chip b { color: var(--text); }
-.audit-sum .chip.ok { border-color: rgba(42,120,214,.45); color: #1d5fae; background: #eef4fc; }
+.audit-sum .chip.ok { border-color: var(--text-dim); color: var(--text); }
 .audit-list { max-height: 460px; overflow-y: auto; border: 1px solid var(--line); border-radius: 6px; }
 .audit-list .it { display: grid; grid-template-columns: 26px 1fr; gap: 8px; padding: 9px 12px; border-top: 1px solid var(--line); font-size: .82rem; line-height: 1.5; }
 .audit-list .it:first-child { border-top: 0; }
 .audit-list .mk { font-weight: 700; text-align: center; }
-.audit-list .mk.y { color: #1d5fae; }
+.audit-list .mk.y { color: var(--named); }
 .audit-list .mk.n { color: var(--accent); }
 .audit-list .who { font-size: .72rem; color: var(--muted); }
 .audit-list .ctx { font-family: var(--serif); color: #2b2a27; }
-.audit-list .ctx mark { background: #dbe8f8; font-weight: 700; padding: 0 2px; border-radius: 2px; }
-.audit-list .it.bad .ctx mark { background: #f7d9d4; }
+.audit-list .ctx mark { background: #e2e8ef; font-weight: 700; padding: 0 2px; border-radius: 2px; }
+.audit-list .it.bad .ctx mark { background: #f1dedb; }
 .audit-list .err { font-size: .74rem; color: var(--accent); }
 
 @media (max-width: 700px) {

@@ -2,18 +2,20 @@
 // (written by analysis/week7_comention.py). Every pair carries its evidence: the sentences on A's page that
 // name B, and the line of A's wiki source where the link sits (or the words that were linked elsewhere).
 (function () {
-  const C = { named: "#2a78d6", linked: "#1c1b19", ink: "#1c1b19", dim: "#4f4d48", muted: "#7b7871", line: "#e5e2db",
-              sentence: "#2a78d6", paragraph: "#1baf7a", page: "#eb6834" };
+  // a muted palette: navy for what the text says, ink for the links, rust for shared codenames, DTU red for our misses
+  const NAVY = "#2f5d8a", RUST = "#a8572f", SAGE = "#5b8a72";
+  const C = { named: NAVY, linked: "#1c1b19", ink: "#1c1b19", dim: "#4f4d48", muted: "#7b7871", line: "#e5e2db",
+              sentence: NAVY, paragraph: SAGE, page: RUST };
   const FAM = {
-    agree:    { c: "#2a78d6", label: "named and linked", desc: "A's prose names B, and A links to B." },
-    codename: { c: "#eb6834", label: "a shared codename", desc: "A links to B, but the words are a codename several characters share (Ghost Rider, Spider-Woman, Psylocke, Giant-Man). We send those words to the page about the name, or to nobody, so the text never names B itself." },
-    words:    { c: "#1baf7a", label: "linked from other words", desc: "A links to B on words that aren't on our name lists: an alter ego, a nickname, a description." },
+    agree:    { c: NAVY, label: "named and linked", desc: "A's prose names B, and A links to B." },
+    codename: { c: RUST, label: "a shared codename", desc: "A links to B, but the words are a codename several characters share (Ghost Rider, Spider-Woman, Psylocke, Giant-Man). We send those words to the page about the name, or to nobody, so the text never names B itself." },
+    words:    { c: SAGE, label: "linked from other words", desc: "A links to B on words that aren't on our name lists: an alter ego, a nickname, a description." },
     notprose: { c: "#9a978f", label: "not in the prose", desc: "The link isn't in A's prose. It sits in a reference, an italic comic title, the infobox or a table." },
-    media:    { c: "#cfccc4", label: "only in In other media", light: true, desc: "The link is only in A's In other media section, which we leave out of the text (it is mostly film titles and cast lists)." },
+    media:    { c: "#d6d2c9", label: "only in In other media", light: true, desc: "The link is only in A's In other media section, which we leave out of the text (it is mostly film titles and cast lists)." },
     missed:   { c: "#990000", label: "our matcher missed it", desc: "A's prose does name B with a name we know, and our matcher should have caught it." },
-    holder:   { c: "#eb6834", label: "linked to another of our pages", desc: "A's prose names B, but the editor linked those words to another of the 303 pages, usually another holder of the same codename." },
-    outside:  { c: "#f3a77f", label: "linked to a page outside the 303", light: true, desc: "A's prose names B, but the editor linked those words to a page that isn't one of the 303: usually the specific person (Clint Barton, Carol Danvers), sometimes a film or a storyline." },
-    never:    { c: "#6b5ca5", label: "never linked", desc: "A's prose names B and never links those words. We read 40 of these: 25 were real mentions, 15 were our errors." },
+    holder:   { c: RUST, label: "linked to another of our pages", desc: "A's prose names B, but the editor linked those words to another of the 303 pages, usually another holder of the same codename." },
+    outside:  { c: "#d4b19c", label: "linked to a page outside the 303", light: true, desc: "A's prose names B, but the editor linked those words to a page that isn't one of the 303: usually the specific person (Clint Barton, Carol Danvers), sometimes a film or a storyline." },
+    never:    { c: "#76728c", label: "never linked", desc: "A's prose names B and never links those words. We read 40 of these: 25 were real mentions, 15 were our errors." },
   };
   const LINK_SIDE = ["agree", "codename", "words", "notprose", "media", "missed"];
   const NAME_SIDE = ["agree", "holder", "outside", "never"];
@@ -149,7 +151,7 @@
         .text((d) => { const s = lab(d.n); return s.length > maxc ? s.slice(0, maxc - 1) + "…" : s; });
       g.filter((d) => d.mantle).append("text").attr("class", "badge").attr("x", m.l - 10).attr("y", rh / 2 + 4)
         .attr("text-anchor", "end").attr("dx", function () { return -this.parentNode.querySelector(".nm").getComputedTextLength() - 6; })
-        .text(narrow ? "◆" : "name page");
+        .text(narrow ? "·" : "name page");
       g.append("line").attr("class", "stem").attr("x1", (d) => x(d.linked)).attr("x2", (d) => x(d.named)).attr("y1", rh / 2).attr("y2", rh / 2);
       g.append("circle").attr("class", "d-linked").attr("cx", (d) => x(d.linked)).attr("cy", rh / 2).attr("r", 5.5);
       g.append("circle").attr("class", "d-named").attr("cx", (d) => x(d.named)).attr("cy", rh / 2).attr("r", 6);
